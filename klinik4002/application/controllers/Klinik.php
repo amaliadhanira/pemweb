@@ -4,6 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Klinik extends CI_Controller{
 	function __construct(){
 		parent::__construct();
+		
+		if ($this->session->status != 'login'){
+			redirect(base_url());
+		}
+		
 		$this->load->model('m_login');
 		$this->load->model('m_antrean');
 		$this->load->model('m_dokter');
