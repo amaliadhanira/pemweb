@@ -16,6 +16,50 @@ class M_Admin extends CI_Model{
 		return $this->db->get('admin')->row_array();
 	}
 
+	function cari_id($id_admin, $page = 1){
+		$this->db->limit(10, ($page-1) * 10);
+		$this->db->where('id_admin', $id_admin);
+		$query = $this->db->get('admin');
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
+	function cari_id_count($id)
+	{
+		$query = $this->db->get('admin', array('id' => $id));
+		return $query->num_rows();
+	}
+
+	function cari_username($username, $page = 1){
+		$this->db->limit(10, ($page-1) * 10);
+		$this->db->like('username', $username);
+		$query = $this->db->get('admin');
+		
+		if($query->num_rows() > 0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
+	function cari_username_count($username)
+	{
+		$this->db->like('username', $username);
+		$query = $this->db->get('admin');
+		
+		return $query->num_rows();
+	}
+
 	function new_admin($data_admin){
 		$data = array(
 			'id_admin' => $data_admin['id_admin'],

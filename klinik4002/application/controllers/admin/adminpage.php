@@ -4,8 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Adminpage extends ADM_Controller {
 	
 	public function __construct() {
-		parent::__construct('member');
-		$this->load->model('member_model');
+		parent::__construct('admin');
+		$this->load->model('M_Admin');
 		$this->load->helper('string');
 		$this->load->helper('form');
 	}
@@ -50,13 +50,13 @@ class Adminpage extends ADM_Controller {
 		$data_view['pilihan'] = '';
 		$data_view['input_cari'] = '';
 		
-		$data_view['rows'] = $this->M_Admin->get_all_member($page);
+		$data_view['rows'] = $this->M_Admin->get_all_admin($page);
 		$this->set_judul('list');
 		$main = $this->load->view('admin/adminpage/main', $data_view, TRUE);
 		$this->tampil($main);
 	}
 
-	function cari($pilihan = 'id', $input, $page = 1){
+	function cari($pilihan = 'id_admin', $input, $page = 1){
 		
 		$this->cek_hapus();
 		
@@ -104,78 +104,6 @@ class Adminpage extends ADM_Controller {
 			redirect('admin/adminpage');
 		}
 	}
-
-	function cek_hapus()
-	{
-		if($this->input->post('do_hapus') !== FALSE)
-		{
-			$id = $this->input->post('id_hapus');
-			if($id !== FALSE)
-			{
-				$this->member_model->delete_member_by_id($id);
-				$this->set_feedback('Berhasil hapus ' . count($id) . ' members', 'sukses');
-			}
-			else
-			{
-				$this->set_feedback('Pilih member yang akan dihapus !', 'error');
-			}
-		}
-	}
-
-	function reset_password($id = '')
-	{
-		if($id !== '')
-		{
-			$data_member = $this->member_model->get_member_by_id($id);
-			
-			if($data_member !== NULL)
-			{
-				//admin can't edit same level or higher
-				if($this->is_authorized($data_member, $this->get_current_member()) === FALSE)
-				{
-					$this->set_flash_feedback('Anda tidak dapat mereset password member dengan level setara atau lebih tinggi!', 'error');
-					redirect('administrator/member');
-					return;
-				}
-				$this->set_judul('reset password');
-				$data_member['password'] = random_string('alnum', 6);
-				$this->member_model->update_password_by_id($id, $data_member['password']);
-				$form = $this->load->view('backend/member/reset_password', $data_member, TRUE);
-				$this->tampil($form);
-			}
-			else
-			{
-				$this->set_feedback('Tidak ada member dengan id ' . $id, 'error');
-				redirect('administrator/member');
-			}
-		}
-		else
-		{
-			redirect('administrator/member');
-		}
-	}
-
-	function lihat($id = '')
-	{		
-		if(is_numeric($id) === TRUE)
-		{
-			$this->set_judul('lihat');
-			$data_view = $this->member_model->get_member_by_id($id);
-			
-			if($data_view !== NULL)
-			{
-				$form = $this->load->view('backend/member/lihat_member', $data_view, TRUE);
-				$this->tampil($form);
-			}
-			else
-			{
-				$this->set_flash_feedback('Tidak ada member dengan id ' . $id, 'error');
-				redirect('administrator/member');
-			}
-		}
-		else
-		{
-			redirect('administrator/member');
-		}
-	}
+	
+}
 ?>
