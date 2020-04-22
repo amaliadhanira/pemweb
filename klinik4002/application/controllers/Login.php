@@ -9,7 +9,7 @@ class Login extends CI_Controller{
 	}
 
 	function index(){
-		$data['title'] = 'Login Klinik 4002';
+		$data['title'] = 'Klinik Tong Pang';
 		$this->load->view('v_login', $data);
 	}
 
