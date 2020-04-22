@@ -5,7 +5,7 @@ class Klinik extends CI_Controller{
 	function __construct(){
 		parent::__construct();
 		
-		if ($this->session->status != 'login'){
+		if ($this->session->status != 'login_pasien'){
 			redirect(base_url());
 		}
 		
