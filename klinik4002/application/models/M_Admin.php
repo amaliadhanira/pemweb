@@ -11,9 +11,35 @@ class M_Admin extends CI_Model{
 		return $this->db->get('admin')->result_array();
 	}
 
+	function get_by_id($id_admin, $array_row = TRUE){
+		$query = $this->db->get_where('admin', array('id_admin' => $id_admin), 1);
+		if($query->num_rows() > 0){
+			if($array_row === TRUE){
+				return $query->row_array();
+			}else{
+				return $query->row();
+			}
+		}else{
+			return NULL;
+		}
+	}
+
 	function get_by_username($username){
 		$this->db->where('username', $username);
 		return $this->db->get('admin')->row_array();
+	}
+
+	function get_by_email($email, $array_row = TRUE){
+		$query = $this->db->get_where('admin', array('email' => $email), 1);
+		if($query->num_rows() > 0){
+			if($array_row === TRUE){
+				return $query->row_array();
+			}else{
+				return $query->row();
+			}
+		}else{
+			return NULL;
+		}
 	}
 
 	function cari_id($id_admin, $page = 1){
@@ -58,6 +84,20 @@ class M_Admin extends CI_Model{
 		$query = $this->db->get('admin');
 		
 		return $query->num_rows();
+	}
+
+	function edit_admin($id_admin, $data_admin, $from_admin = TRUE){
+		$data = array(
+			'nama_admin' => $data_admin['nama_admin'],
+			'email' => $data_admin['email'],
+			'alamat' => $data_admin['alamat'],
+			'no_telp' => $data_admin['no_telp'],
+			'username' => $data_admin['username'],
+			'password' => md5($data_admin['password'])
+		);
+
+		$this->db->where('id_admin', $id_admin);
+		$this->db->update('admin', $data);
 	}
 
 	function new_admin($data_admin){
@@ -110,6 +150,18 @@ class M_Admin extends CI_Model{
 	function all_rows_count(){
 		$query = $this->db->get('admin');
 		return $query->num_rows();
+	}
+
+	function update_password($post){
+		$this->db->where('id_admin', $post['id_admin']);
+		$this->db->update('admin', array('password' => $post['password']));
+		return TRUE;
+	}
+
+	function is_valid_token($token){
+		$this->db->select('id_admin');
+		$this->db->where('sha1(admin.email)"-"admin.password) = $token');
+		$this->db->get('admin');
 	}
 }
 ?>

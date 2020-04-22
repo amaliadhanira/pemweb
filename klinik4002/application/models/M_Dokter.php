@@ -40,6 +40,10 @@ class M_Dokter extends CI_Model{
 		$this->db->where('id_dokter', $id_dokter)
 	}
 
+	function get_last_id(){
+		return $this->db->insert_id();
+	}
+
 	function delete_dokter_by_id($id_dokter){
 		if(is_array($id_dokter)){
 			$this->db->where_in('id_dokter', $id_dokter);
