@@ -73,7 +73,7 @@ class Klinik extends CI_Controller{
 	function antrean_saya(){
 		$data['title'] = 'Antrean Saya';
 		$data['page'] = 'antrean_saya';
-		$data['dokter'] = $this->m_dokter->get_dokter_array();
+		$data['dokter'] = $this->m_dokter->get_all();
 		$this->load->view('pasien/templates/v_header', $data);
 		$this->load->view('pasien/v_antrean_saya', $data);
 		$this->load->view('pasien/templates/v_footer', $data);
