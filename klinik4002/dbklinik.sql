@@ -75,14 +75,25 @@ INSERT INTO `antrean` (`no_antrean`, `id_pasien`, `id_dokter`, `tgl_periksa`) VA
 
 -- --------------------------------------------------------
 
+CREATE TABLE `spesialisasi` (
+  `id_spesialisasi` int(20) NOT NULL,
+  `nama_spesialisasi` varchar(50) NOT NULL
+);
+
+INSERT INTO `spesialisasi`(`id_spesialisasi`, `nama_spesialisasi`) VALUES
+(1, 'Penyakit Dalam'),
+(2, 'Orthodonti'),
+(3, 'Periodonsia');
+
 --
 -- Table structure for table `dokter`
 --
 
 CREATE TABLE `dokter` (
   `id_dokter` int(20) NOT NULL,
+  `id_spesialisasi` int(20) NOT NULL,
   `nama_dokter` varchar(50) NOT NULL,
-  `spesialis` varchar(50) NOT NULL,
+  `jadwal` text,
   `alamat` text,
   `no_telp` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -91,11 +102,11 @@ CREATE TABLE `dokter` (
 -- Dumping data for table `dokter`
 --
 
-INSERT INTO `dokter` (`id_dokter`, `nama_dokter`, `spesialis`, `alamat`, `no_telp`) VALUES
-(1000000, 'Alda Putri Utami', 'Penyakit Dalam', 'Jl. Nan Indah No.12', '081299229939'),
-(1000001, 'Raymond Agung Nugroho', 'Penyakit Dalam', 'Jl. Nanana No. 70', '081344773851'),
-(1000002, 'Dhanira Dessy Amalia', 'Orthodontist', 'Jl. Tol Banyak Hambatan No. 14', '0856227382910'),
-(1000003, 'Yulinda Lubis', 'Spesialis Gigi', 'Jl. Ku Bukan Jalanmu No. 11', '0855388219481');
+INSERT INTO `dokter` (`id_dokter`, `id_spesialisasi`, `nama_dokter`, `jadwal`, `alamat`, `no_telp`) VALUES
+(1000000, 1, 'Alda Putri Utami', 'Senin-Jumat 08:00-12:00', 'Jl. Nan Indah No.12', '081299229939'),
+(1000001, 1, 'Raymond Agung Nugroho', 'Senin-Jumat 13:00-17:00', 'Jl. Nanana No. 70', '081344773851'),
+(1000002, 2, 'Dhanira Dessy Amalia', 'Senin-Jumat 08:00-12:00', 'Jl. Tol Banyak Hambatan No. 14', '0856227382910'),
+(1000003, 3, 'Yulinda Lubis', 'Senin-Jumat 13:00-17:00', 'Jl. Ku Bukan Jalanmu No. 11', '0855388219481');
 
 -- --------------------------------------------------------
 
@@ -256,7 +267,7 @@ CREATE TABLE IF NOT EXISTS `tokens` (
   `id_admin` int(11) NOT NULL,
   `id_pasien` int(11) NOT NULL,
   `created` date NOT NULL
-)
+);
 
 --
 -- Indexes for dumped tables
@@ -276,6 +287,12 @@ ALTER TABLE `antrean`
   ADD PRIMARY KEY (`no_antrean`),
   ADD KEY `id_dokter_daftar` (`id_dokter`),
   ADD KEY `id_pasien_daftar` (`id_pasien`);
+
+--
+-- Indexes for table `spesialisasi`
+--
+ALTER TABLE `spesialisasi`
+  ADD PRIMARY KEY (`id_spesialisasi`);
 
 --
 -- Indexes for table `dokter`
@@ -338,6 +355,10 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `antrean`
   MODIFY `no_antrean` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+
+ALTER TABLE `spesialisasi`
+  MODIFY `id_spesialisasi` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `dokter`

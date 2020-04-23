@@ -50,7 +50,7 @@ class Dokter extends ADM_Controller {
 		$data_view['pilihan'] = '';
 		$data_view['input_cari'] = '';
 		
-		$data_view['rows'] = $this->M_Admin->get_all_admin($page);
+		$data_view['rows'] = $this->M_Dokter->get_all_dokter($page);
 		$this->set_judul('list');
 		$main = $this->load->view('admin/dokter/main', $data_view, TRUE);
 		$this->tampil($main);
@@ -64,10 +64,12 @@ class Dokter extends ADM_Controller {
 				$data_view['rows'] = $this->M_Dokter->cari_id($input, $page);
 				$config['total_rows'] = $this->M_Dokter->cari_id_count($input);
 			break;
-			case 'username':
+			case 'nama':
 				$data_view['rows'] = $this->M_Dokter->cari_username($input, $page);
 				$config['total_rows'] = $this->M_Dokter->cari_username_count($input);
 			break;
+			case 'spesialis':
+				
 			default:
 				redirect('admin/dokter');
 			break;
@@ -152,41 +154,29 @@ class Dokter extends ADM_Controller {
 
 	function status($pilihan = 'id_dokter'){
 		switch($pilihan){
-			case 'Ada':
+			case '1':
 			$pilihan = 'Ada';
 			break;
-			case 'Tidak ada':
+			case '0':
 			$pilihan = 'Tidak ada';
 		}
 	}
 
 	function upload_foto($id_dokter =''){
-		if(! is_numeric($id_dokter)){
-			redirect('admin/dokter');
-		}else{
-			$data_view = $this->M_Dokter->get_by_id($id_dokter);
-			if($data_view === NULL){
-				redirect('admin/dokter');
-			}
-		
-			$config['upload_path'] = './images/dokter/';
+			$config['upload_path'] = './assets/img/';
 			$config['allowed_types'] = 'jpg';
 			$config['max_width']  = '250';
 			$config['max_height']  = '250';
 			$config['overwrite'] = TRUE;
 			$config['file_name'] = $id_dokter;
 
-			$this->set_judul('upload foto' . $data_view['nama']);
-
-			if($this->input->post('upload_foto')){
+			$this->load->library('upload', $config);
+		
+			if ( ! $this->upload->do_upload('avatar')){
 				$this->set_feedback($this->upload->display_errors('',''), 'error');
 			}else{
-				$this->set_feedback('Sukses upload foto');
-			}
-
-			$form = $this->load->view('admin/dokter/upload_foto', $data_view, TRUE);
-			$this->show($form);
-		}
+				$this->set_feedback('Sukses upload foto', 'sukses');
+			}	
 	}
 
 	function edit($id_dokter =''){

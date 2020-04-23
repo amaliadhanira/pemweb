@@ -104,8 +104,8 @@ class Adminpage extends ADM_Controller {
 		if($this->input->post('do_hapus') !== FALSE){
 			$id = $this->input->post('id_post');
 			if($id !== FALSE){
-				$this->M_Admin->delete_admin_by_id($id);
-				$this->set_feedback('Berhasil dihapus' . count($id) . ' admin', 'sukses');
+				$this->M_Admin->delete_admin_by_id($id_admin);
+				$this->set_feedback('Berhasil dihapus' . count($id_admin) . ' admin', 'sukses');
 			}else{
 				$this->set_feedback('Pilih admin yang akan dihapus', 'error');
 			}

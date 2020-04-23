@@ -16,6 +16,20 @@ class M_Dokter extends CI_Model{
 		return $this->db->get('dokter')->row_array();
 	}
 
+	function cari_id($id_dokter, $page = 1){
+		
+		$this->db->limit(10, ($page-1) * 10);
+		$this->db->select('(SELECT nama FROM kategori WHERE id = produk.id_kategori LIMIT 1) as kategori, id, nama, harga, deskripsi, tersedia, dilihat, dipesan', FALSE);
+		$this->db->where('id', $id);
+		$query = $this->db->get('dokter');
+		
+		if($query->num_rows() > 0){
+			return $query->result_array();
+		}else{
+			return NULL;
+		}
+	}
+
 	function dokter_baru($data_dokter){
 		$data = array(
 			'id_dokter' => $data_dokter['id_dokter'],
