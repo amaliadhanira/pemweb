@@ -282,7 +282,7 @@ class Adminpage extends ADM_Controller {
 		$config['max_width']  = '150';
 		$config['max_height']  = '150';
 		$config['overwrite'] = TRUE;
-		$config['file_name'] = $id;
+		$config['file_name'] = $id_admin;
 		
 		$this->load->library('upload', $config);
 		
@@ -331,7 +331,7 @@ class Adminpage extends ADM_Controller {
 				$form = $this->load->view('admin/adminaccount/V_Edit', $data_view, TRUE);
 				$this->tampil($form);
 			}else{
-				$this->set_flash_feedback('Tidak ada member dengan id ' . $id_admin, 'error');
+				$this->set_flash_feedback('Tidak ada admin dengan id ' . $id_admin, 'error');
 				redirect('admin/adminpage');
 			}
 		}else{
