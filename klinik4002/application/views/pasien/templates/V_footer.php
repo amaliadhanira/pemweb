@@ -6,7 +6,10 @@
 
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
     
-<script src="<?= base_url('assets/js/app_antrean_saya.js') ?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha256-bqVeqGdJ7h/lYPq6xrPv/YGzMEb6dNxlfiTUHSgRCp8=" crossorigin="anonymous"></script>
+    
+<script src="<?= base_url('assets/js/dt_antrean_saya.js') ?>"></script>
+<script src="<?= base_url('assets/js/dt_dokter.js') ?>"></script>
 </body>
 <footer class="footer text-center">
 	<span class="text-muted">&copy; 2020 Klinik 4002</span>
