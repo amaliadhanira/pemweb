@@ -52,7 +52,7 @@ class Adminpage extends ADM_Controller {
 		
 		$data_view['rows'] = $this->M_Admin->get_all_admin($page);
 		$this->set_judul('list');
-		$main = $this->load->view('admin/main', $data_view, TRUE);
+		$main = $this->load->view('admin/adminaccount/main', $data_view, TRUE);
 		$this->tampil($main);
 	}
 
