@@ -9,7 +9,7 @@ class Login extends CI_Controller{
 	}
 
 	function index(){
-		$data['title'] = 'Klinik Tong Pang';
+		$data['title'] = 'Login Klinik 4002';
 		$this->load->view('v_login', $data);
 	}
 
@@ -21,22 +21,24 @@ class Login extends CI_Controller{
 			$session_data = array(
 				'username' => $username,
 				'level' => 'pasien',
-				'status' => 'login_pasien'
+				'status' => 'login'
 			);
 
 			$this->session->set_userdata($session_data);
 			redirect('/klinik');
 
-		} else if($this->m_login->auth_admin($username, $password)){
+		}else if($this->m_login->auth_admin($username, $password)){
 			$session_data = array(
 				'username' => $username,
 				'level' => 'admin',
-				'status' => 'login_admin'
+				'status' => 'login'
 			);
 
 			$this->session->set_userdata($session_data);
 			redirect('admin/adminpage');
-		} else {
+		}
+
+		}else {
 			$data['error_msg'] = $this->session->set_flashdata('error_msg', 'Username atau Password salah');
 			$this->load->view('v_login', $data);
 		}
