@@ -59,7 +59,8 @@ CREATE TABLE `antrean` (
   `no_antrean` int(20) NOT NULL,
   `id_pasien` int(20) NOT NULL,
   `id_dokter` int(20) NOT NULL,
-  `tgl_periksa` date NOT NULL
+  `tgl_periksa` date NOT NULL,
+	`waktu_daftar` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -67,11 +68,11 @@ CREATE TABLE `antrean` (
 --
 
 INSERT INTO `antrean` (`no_antrean`, `id_pasien`, `id_dokter`, `tgl_periksa`) VALUES
-(1, 2000001, 1000002, '2020-04-02'),
-(2, 2000002, 1000001, '2020-03-12'),
-(3, 2000004, 1000000, '2020-04-03'),
-(4, 2000003, 1000003, '2020-03-28'),
-(5, 2000001, 1000000, '2020-06-09');
+(1, 2000001, 1000002, '2020-04-02', '2020-04-23 14:23:51'),
+(2, 2000002, 1000001, '2020-03-12', '2020-04-23 14:23:31'),
+(3, 2000004, 1000000, '2020-04-03', '2020-04-23 14:23:46'),
+(4, 2000003, 1000003, '2020-03-28', '2020-04-23 14:23:46'),
+(5, 2000001, 1000000, '2020-06-09', '2020-04-23 14:23:46');
 
 -- --------------------------------------------------------
 
