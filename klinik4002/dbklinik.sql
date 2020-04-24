@@ -67,7 +67,7 @@ CREATE TABLE `antrean` (
 -- Dumping data for table `antrean`
 --
 
-INSERT INTO `antrean` (`no_antrean`, `id_pasien`, `id_dokter`, `tgl_periksa`) VALUES
+INSERT INTO `antrean` (`no_antrean`, `id_pasien`, `id_dokter`, `tgl_periksa`, `waktu_daftar`) VALUES
 (1, 2000001, 1000002, '2020-04-02', '2020-04-23 14:23:51'),
 (2, 2000002, 1000001, '2020-03-12', '2020-04-23 14:23:31'),
 (3, 2000004, 1000000, '2020-04-03', '2020-04-23 14:23:46'),
@@ -219,7 +219,7 @@ INSERT INTO `obat` (`id_obat`, `nama_obat`, `produsen`, `manufacture_date`, `exp
 CREATE TABLE `pasien` (
   `id_pasien` int(20) NOT NULL,
   `nama_pasien` varchar(50) NOT NULL,
-  `ttl` date NOT NULL,
+  `tanggal_lahir` date NOT NULL,
   `username` varchar(30) NOT NULL,
   `alamat` text NOT NULL,
   `no_telp` varchar(15) NOT NULL,
@@ -231,7 +231,7 @@ CREATE TABLE `pasien` (
 -- Dumping data for table `pasien`
 --
 
-INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `ttl`, `username`, `alamat`, `no_telp`, `email`, `password`) VALUES
+INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `tanggal_lahir`, `username`, `alamat`, `no_telp`, `email`, `password`) VALUES
 (2000000, 'Stephanie Lee', '1997-12-14', 'steph_lee', 'Jl. Terusan Siguragura No. 1', '878555878', 'stephlee@example.com', '120b506e73fa9b09021f83919c1dc6ec'),
 (2000001, 'Ryan Weiss', '1997-01-27', 'weissryan', 'Jl. Suhadi No. 1', '838555519', 'ryan.weiss@example.com', '2a2535ce33b3c7913a8650d47202925a'),
 (2000002, 'Abel Laing', '1998-10-16', 'abelchyank', 'Jl. Rajawali No. 5', '8975555393', 'laing_abel@example.com', 'e3f5ac09a0053a569029c6b0eddbe3e5'),

@@ -35,7 +35,7 @@ class Login extends CI_Controller{
 			);
 
 			$this->session->set_userdata($session_data);
-			redirect('admin/adminpage');
+			redirect('/admin/adminpage');
 		} else {
 			$data['error_msg'] = $this->session->set_flashdata('error_msg', 'Username atau Password salah');
 			$this->load->view('v_login', $data);

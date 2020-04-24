@@ -11,6 +11,11 @@ class M_Admin extends CI_Model{
 		parent::__construct();
 	}
 
+	function get_my_antrean($username){
+		$this->db->select('*');
+		$this->db->from('admin');
+	}
+
 	function get_detail_admin(){
 		$this->db->select('*');
 		$this->db->from('admin');
@@ -111,8 +116,7 @@ class M_Admin extends CI_Model{
 		}
 	}
 
-	function cari_id_count($id)
-	{
+	function cari_id_count($id){
 		$query = $this->db->get('admin', array('id' => $id));
 		return $query->num_rows();
 	}
@@ -132,8 +136,7 @@ class M_Admin extends CI_Model{
 		}
 	}
 
-	function cari_username_count($username)
-	{
+	function cari_username_count($username){
 		$this->db->like('username', $username);
 		$query = $this->db->get('admin');
 		
@@ -141,21 +144,21 @@ class M_Admin extends CI_Model{
 	}
 
 	function edit_admin($id_admin, $data_admin, $from_admin = TRUE){
-		$data = array(
+		/*$data = array(
 			'nama_admin' => $data_admin['nama_admin'],
 			'email' => $data_admin['email'],
 			'alamat' => $data_admin['alamat'],
 			'no_telp' => $data_admin['no_telp'],
 			'username' => $data_admin['username'],
 			'password' => md5($data_admin['password'])
-		);
+		);*/
 
 		$this->db->where('id_admin', $id_admin);
-		$this->db->update('admin', $data);
+		return $this->db->update($this->table, $data_admin);
 	}
 
 	function new_admin($data_admin){
-		$data = array(
+		/*$data = array(
 			'id_admin' => $data_admin['id_admin'],
 			'nama_admin' => $data_admin['nama_admin'];
 			'email' => $data_admin['email'],
@@ -163,8 +166,8 @@ class M_Admin extends CI_Model{
 			'no_telp' => $data_admin['no_telp'],
 			'username' => $data_admin['username'],
 			'password' => md5($data_admin['password'])
-		);
-		$this->db->insert('admin', $data);
+		);*/
+		return $this->db->insert($this->table, $data);
 	}
 
 	function exist_username($username){
@@ -212,10 +215,10 @@ class M_Admin extends CI_Model{
 		return TRUE;
 	}
 
-	function is_valid_token($token){
+	/*function is_valid_token($token){
 		$this->db->select('id_admin');
 		$this->db->where('sha1(admin.email)"-"admin.password) = $token');
-		$this->db->get('admin');
+		$this->db->get('admin');*/
 	}
 }
 ?>
