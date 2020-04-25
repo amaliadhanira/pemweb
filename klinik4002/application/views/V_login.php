@@ -46,15 +46,15 @@
                                         <input type="password" id="password" class="form-control" placeholder=""
                                             type="password" name="password" required="true">
                                     </div>
-                                    <div class="form-check">
+                                    <!--<div class="form-check">
                                         <label class="form-check-label forget-password"><a
                                                 href="#">Lupa Sandi?</a></label>
-                                    </div>
+                                    </div>-->
                                     <div class="pui-form__element">
                                         <button class="btn btn-lg btn-primary btn-block" type="submit">Masuk</button>
                                     </div>
                                 </form>
-                                <span class="signup-label">Belum punya akun? <a href="#"> Daftar. </a></span>
+                                <span class="signup-label">Belum punya akun? <a href="<?= site_url('login/daftar') ?>"> Daftar. </a></span>
                             </div>
                         </div>
                     </div>
