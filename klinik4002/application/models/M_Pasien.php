@@ -90,5 +90,9 @@ class M_Pasien extends CI_Model{
 			return false;
 		}
 	}
+	
+	function daftar_akun($data){
+		return $this->db->insert('pasien', $data);
+	}
 }
 ?>
