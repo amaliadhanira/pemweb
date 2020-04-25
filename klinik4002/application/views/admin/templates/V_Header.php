@@ -19,14 +19,14 @@
 <body>
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  			<a class="navbar-brand" href="<?= site_url('admin') ?>">Administrasi</a>
+  			<a class="navbar-brand" href="<?= site_url('admin/adminpage') ?>">Administrasi</a>
   			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     			<span class="navbar-toggler-icon"></span>
   			</button>
   			<div class="collapse navbar-collapse" id="navbarNav">
     			<ul class="navbar-nav mr-auto">
       				<li class="nav-item <?php if ($page=='home') echo 'active'; ?>">
-        				<a class="nav-link" href="<?= site_url('admin') ?>">Home</a>
+        				<a class="nav-link" href="<?= site_url('admin/adminpage') ?>">Home</a>
       				</li>
                <li class="nav-item">
                 <a class="nav-link <?php if ($page=='dokter') echo 'active'; ?>" href="<?= site_url('admin/adminpage/admin') ?>">Tambah Admin</a>
