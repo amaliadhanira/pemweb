@@ -4,9 +4,10 @@
 	<title><?= $title ?></title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
+  
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha256-siyOpF/pBWUPgIcQi17TLBkjvNgNQArcmwJB8YvkAgg=" crossorigin="anonymous" />
 
@@ -39,12 +40,12 @@
                 </div>
       				</li>
       				<li class="nav-item">
-        				<a class="nav-link <?php if ($page=='laporan') echo 'active'; ?>" href="#">Laporan Pemeriksaan</a>
+        				<a class="nav-link <?php if ($page=='laporan_pemeriksaan') echo 'active'; ?>" href="<?= site_url('klinik/laporan_pemeriksaan') ?>">Laporan Pemeriksaan</a>
       				</li>
       				<li class="nav-item dropdown">
-        				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil</a>
+        				<a class="nav-link dropdown-toggle <?php if ($page=='ubah_profil') echo 'active'; ?>" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil</a>
         				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          					<a class="dropdown-item" href="#">Ubah Profil</a>
+          					<a class="dropdown-item <?php if ($page=='ubah_profil') echo 'active'; ?>" href="<?= site_url('klinik/ubah_profil') ?>">Ubah Profil</a>
           					<a class="dropdown-item" href="<?= site_url('login/logout') ?>">Logout</a>
         				</div>
       				</li>
