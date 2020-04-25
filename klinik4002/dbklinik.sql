@@ -313,8 +313,7 @@ ALTER TABLE `lab`
 --
 ALTER TABLE `laporan_pemeriksaan`
   ADD PRIMARY KEY (`id_laporan`),
-  ADD KEY `id_pasien_lap` (`id_pasien`),
-  ADD KEY `id_dokter_lap` (`id_dokter`);
+  ADD KEY `no_antrean_lap` (`no_antrean`);
 
 --
 -- Indexes for table `obat`
