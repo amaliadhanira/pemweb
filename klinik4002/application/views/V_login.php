@@ -31,11 +31,15 @@
                             </div>
                             <div class="form-wrap">
                                 <form class="pui-form" method="post" action="<?= site_url('login/auth') ?>">
-                                	<?php if ($this->session->flashdata('error_msg')) : ?>
+                                	<?php if ($this->session->flashdata('error_msg')) { ?>
 										<div class="alert alert-danger" role="alert">
 											<?= $this->session->flashdata('error_msg'); ?>
 										</div>
-									<?php endif; ?>
+									<?php } else if ($this->session->flashdata('info_msg')) { ?> 
+                                        <div class="alert alert-success" role="alert">
+                                            <?= $this->session->flashdata('info_msg'); ?>
+                                        </div>
+                                    <?php } ?>
                                     <div class="pui-form__element">
                                         <label class="animated-label">Username</label>
                                         <input type="text" id="username" class="form-control" placeholder=""
