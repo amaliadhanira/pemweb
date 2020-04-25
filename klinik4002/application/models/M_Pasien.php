@@ -94,5 +94,10 @@ class M_Pasien extends CI_Model{
 	function daftar_akun($data){
 		return $this->db->insert('pasien', $data);
 	}
+	
+	function update_pasien($id_pasien, $data){
+		$this->db->where('id_pasien', $id_pasien);
+		return $this->db->update('pasien', $data);
+	}
 }
 ?>
