@@ -414,8 +414,7 @@ ALTER TABLE `antrean`
 -- Constraints for table `laporan_pemeriksaan`
 --
 ALTER TABLE `laporan_pemeriksaan`
-  ADD CONSTRAINT `id_dokter_lap` FOREIGN KEY (`id_dokter`) REFERENCES `dokter` (`id_dokter`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `id_pasien_lap` FOREIGN KEY (`id_pasien`) REFERENCES `pasien` (`id_pasien`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `no_antrean_lap` FOREIGN KEY (`no_antrean`) REFERENCES `antrean` (`no_antrean`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `resep_obat`
