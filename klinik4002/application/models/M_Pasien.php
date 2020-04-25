@@ -79,5 +79,16 @@ class M_Pasien extends CI_Model{
 		$query = $this->db->get('pasien');
 		return $query->num_rows();
 	}
+	
+	function match_password($id_pasien, $password){
+		$this->db->where('id_pasien', $id_pasien);
+		$this->db->where('password', md5($password));
+		$count = $this->db->from('pasien')->count_all_results();
+		if ($count > 0){
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 ?>
