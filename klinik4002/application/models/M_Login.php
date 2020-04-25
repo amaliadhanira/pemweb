@@ -9,7 +9,7 @@ class M_Login extends CI_Model{
 
 	function auth_admin($username, $password){
 		$this->db->where('username', $username);
-		$this->db->where('password',md5('$password'));
+		$this->db->where('password', md5($password));
 		$count = $this->db->from('admin')->count_all_results();
 		if ($count > 0){
 			return true;
