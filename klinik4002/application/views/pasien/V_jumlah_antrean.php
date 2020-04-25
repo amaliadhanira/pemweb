@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="col">
+	<div class="col-md-12">
 		<h1>Jumlah Antrean Hari Ini</h1>
 		<table class="table">
 			<thead>
@@ -19,7 +19,7 @@
 				<tr>
 					<th scope="row"><?= $i ?></th>
 					<td><?= $ant['nama_dokter'] ?></td>
-					<td><?= $ant['spesialis'] ?></td>
+					<td><?= $ant['nama_spesialisasi'] ?></td>
 					<td><?= $ant['jumlah_antrean'] ?></td>
 				</tr>
 				<?php 

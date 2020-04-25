@@ -3,7 +3,7 @@
 		<h1>Antrean Saya</h1>
 		<div class="float-left p-2"><button class="btn btn-sm btn-primary" id="daftar_antrean">Daftar Antrean</button></div>
 		<div class="p-2">
-			<table class="table" id="table_antrean_saya" style="width: 100%">
+			<table class="table table-hover" id="table_antrean_saya" style="width: 100%">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
@@ -20,7 +20,7 @@
 	</div>
 </div>
 
-<!-- MODAL -->
+<!-- MODAL DAFTAR / UBAH TANGGAL -->
 <div class="modal fade" id="modal_antrean" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -54,7 +54,7 @@
 						</div>
 						<div class="form-group">
 							<label for="tgl_periksa" class="col-form-label">Tanggal Periksa:</label>
-							<input type="text" name="tgl_periksa" class="form-control datepicker" placeholder="yyyy-mm-dd" value="<?= (new DateTime('tomorrow'))->format('Y-m-d') ?>" required readonly>
+							<input type="text" name="tgl_periksa" class="form-control datepicker datepicker-as" placeholder="yyyy-mm-dd" value="<?= (new DateTime('tomorrow'))->format('Y-m-d') ?>" required readonly>
 							<span class="help-block"></span>
 						</div>
 					</div>
