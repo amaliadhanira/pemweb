@@ -13,6 +13,7 @@ class Klinik extends CI_Controller{
 		$this->load->model('m_antrean_saya');
 		$this->load->model('m_dokter');
 		$this->load->model('m_pasien');
+		$this->load->model('m_laporan_pemeriksaan');
 	}
 
 	function index(){
@@ -159,6 +160,95 @@ class Klinik extends CI_Controller{
 	}
 
 	/* END OF CONTROLLER FUNCTIONS FOR DATATABLE ANTREAN SAYA */
+
+	function laporan_pemeriksaan(){
+		$data['title'] = 'Laporan Pemeriksaan';
+		$data['page'] = 'laporan_pemeriksaan';
+		$this->load->view('pasien/templates/v_header', $data);
+		$this->load->view('pasien/v_laporan_pemeriksaan', $data);
+		$this->load->view('pasien/templates/v_footer', $data);
+	}
+
+	/* CONTROLLER FUNCTIONS FOR DATATABLE LAPORAN PEMERIKSAAN */
+
+	function data_laporan_pemeriksaan(){
+		$laporan = $this->m_laporan_pemeriksaan->get_datatables();
+		$data = array();
+		$no = $this->input->post('start');
+
+		foreach($laporan as $lap) {
+			$dis = '';
+			$no++;
+			$row = array();
+			$row[] = $no;
+			$row[] = $lap['nama_dokter'];
+			$row[] = $lap['nama_spesialisasi'];
+			$row[] = $lap['tgl_periksa'];
+			$row[] = $lap['diagnosa'];
+
+			$row[] = '<button class="btn btn-sm btn-info" data-id_laporan="'. $lap['id_laporan'] .'" id="rincian_laporan">Rincian</button>';
+
+			$data[] = $row;
+		}
+
+		$output = array(
+						"draw" => $this->input->post('draw'),
+						"recordsTotal" => $this->m_laporan_pemeriksaan->count_all(),
+						"recordsFiltered" => $this->m_laporan_pemeriksaan->count_filtered(),
+						"data" => $data,
+		);
+
+		echo json_encode($output);
+	}
+
+	function this_resep_obat($id_laporan){
+		$resep_obat = $this->m_laporan_pemeriksaan->get_by_id_join_resep($id_laporan);
+		echo json_encode($resep_obat);
+	}
+
+	/* END OF CONTROLLER FUNCTIONS FOR DATATABLE LAPORAN PEMERIKSAAN */
+
+	function ubah_profil(){
+		$data['title'] = 'Ubah Profil';
+		$data['page'] = 'ubah_profil';
+		$data['pasien'] = $this->m_pasien->get_by_username($this->session->username);
+
+		$this->load->view('pasien/templates/v_header', $data);
+		$this->load->view('pasien/v_ubah_profil', $data);
+		$this->load->view('pasien/templates/v_footer', $data);
+	}
+
+	function edit_profil(){
+		$id_pasien = $this->input->post('id_pasien');
+		$password = $this->input->post('password');
+
+		//FORM VALIDATION
+		$this->form_validation->set_rules('nama_pasien', 'Nama Lengkap', 'trim|required|alpha_numeric_spaces');
+		$this->form_validation->set_rules('alamat', 'Alamat', 'required');
+		$this->form_validation->set_rules('no_telp', 'Nomor Telepon', 'trim|required|numeric|min_length[10]|max_length[13]');
+		$this->form_validation->set_rules('password', 'Sandi', 'trim|required|min_length[6]');
+		$this->form_validation->set_rules('passconf', 'Konfirmasi Sandi', 'trim|required|matches[password]');
+
+		$input = array(
+			'nama_pasien' => $this->input->post('nama_pasien'),
+			'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+			'alamat' => $this->input->post('alamat'),
+			'no_telp' => $this->input->post('no_telp'),
+		);
+
+		if ($this->form_validation->run() == FALSE){
+			redirect('klinik/ubah_profil');
+		} else {
+			if ($this->m_pasien->match_password($id_pasien, $password)){
+			$data['info_msg'] = $this->session->set_flashdata('info_msg', 'success');
+			$this->m_pasien->update_pasien($id_pasien, $input);
+			} else {
+			$data['info_msg'] = $this->session->set_flashdata('info_msg', 'error');
+			}
+		}
+		redirect('klinik/ubah_profil');
+	}
+
 }
 
 ?>
