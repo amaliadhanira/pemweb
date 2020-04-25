@@ -1,62 +1,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?= $title ?></title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-	
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha256-siyOpF/pBWUPgIcQi17TLBkjvNgNQArcmwJB8YvkAgg=" crossorigin="anonymous" />
-
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="<?= base_url('assets/css/datepicker_style.css') ?>" type="text/css">
+	<meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title><?= $title ?></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- favicon
+    ============================================ -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/tp-logo-png.png">
+    <!-- Google Fonts
+    ============================================ -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
+    <!-- Bootstrap CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Bootstrap CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- owl.carousel CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="css/owl.theme.css">
+    <link rel="stylesheet" href="css/owl.transitions.css">
+    <!-- animate CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- normalize CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <!-- meanmenu icon CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/meanmenu.min.css">
+    <!-- main CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/main.css">
+    <!-- educate icon CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/educate-custon-icon.css">
+    <!-- morrisjs CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/morrisjs/morris.css">
+    <!-- mCustomScrollbar CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/scrollbar/jquery.mCustomScrollbar.min.css">
+    <!-- metisMenu CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/metisMenu/metisMenu.min.css">
+    <link rel="stylesheet" href="css/metisMenu/metisMenu-vertical.css">
+    <!-- calendar CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/calendar/fullcalendar.min.css">
+    <link rel="stylesheet" href="css/calendar/fullcalendar.print.min.css">
+    <!-- style CSS
+    ============================================ -->
+    <link rel="stylesheet" href="style.css">
+    <!-- responsive CSS
+    ============================================ -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- modernizr JS
+    ============================================ -->
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-	<div class="container">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  			<a class="navbar-brand" href="<?= site_url('admin/adminpage') ?>">Administrasi</a>
-  			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    			<span class="navbar-toggler-icon"></span>
-  			</button>
-  			<div class="collapse navbar-collapse" id="navbarNav">
-    			<ul class="navbar-nav mr-auto">
-      				<li class="nav-item <?php if ($page=='home') echo 'active'; ?>">
-        				<a class="nav-link" href="<?= site_url('admin/adminpage') ?>">Home</a>
-      				</li>
-               <li class="nav-item">
-                <a class="nav-link <?php if ($page=='dokter') echo 'active'; ?>" href="<?= site_url('admin/adminpage/admin') ?>">Tambah Admin</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link <?php if ($page=='dokter') echo 'active'; ?>" href="<?= site_url('admin/adminpage/dokter') ?>">Dokter</a>
-              </li>
-               <li class="nav-item">
-                <a class="nav-link <?php if ($page=='dokter') echo 'active'; ?>" href="<?= site_url('admin/adminpage/farmasi') ?>">Farmasi</a>
-              </li> 
-               <li class="nav-item">
-                <a class="nav-link <?php if ($page=='dokter') echo 'active'; ?>" href="<?= site_url('admin/adminpage/lab') ?>">Lab</a>
-              </li>
-               <li class="nav-item">
-                <a class="nav-link <?php if ($page=='dokter') echo 'active'; ?>" href="<?= site_url('admin/adminpage/lab') ?>">Antrean</a>
-              </li>
-      				<li class="nav-item">
-        				<a class="nav-link <?php if ($page=='laporan') echo 'active'; ?>" href="#">Laporan Pemeriksaan</a>
-      				</li>
-      				<li class="nav-item dropdown">
-        				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil</a>
-        				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          					<a class="dropdown-item" href="#">Ubah Profil</a>
-          					<a class="dropdown-item" href="<?= site_url('login/logout') ?>">Logout</a>
-        				</div>
-      				</li>
-    			</ul>
-    			<span class="navbar-text">
-    				<strong>Halo, <?= $this->session->username; ?></strong>
-    			</span>
-  			</div>
-		</nav>
-	</div>
+	<div class="left-sidebar-pro">
+        <nav id="sidebar" class="">
+            <div class="sidebar-header">
+                <a href="index.html"><img class="main-logo" src="img/tp-logo-png.png" width="100" /></a>
+                <strong><a href="index.html"><img src="" alt="" /></a></strong>
+            </div>
+            <div class="left-custom-menu-adp-wrap comment-scrollbar">
+                <nav class="sidebar-nav left-sidebar-menu-pro">
+                    <ul class="metismenu" id="menu1">
+                        <li class="active">
+                            
+                   
+                   <a title="Landing Page" href="Index-Admin.html" aria-expanded="false"><span class="educate-icon educate-home icon-wrap" aria-hidden="true"></span> <span class="mini-click-non">Dashboard</span></a>
+                        </li>
+                        <li>
+                            <a title="Landing Page" href="Antrean.html" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Antrean</span></a>
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="semua_dokter.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Data Dokter</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="semua dokter" href="semua_dokter.html"><span class="mini-sub-pro">Semua Dokter</span></a></li>
+                                <li><a title="tambah dokter" href="Tambah_dokter.html"><span class="mini-sub-pro">Menambahkan Dokter</span></a></li>
+                                <li><a title="Edit Dokter" href="edit-dokter.html"><span class="mini-sub-pro">Edit Dokter</span></a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            
+                            <a title="Landing Page" href="Data_Pasien.html" aria-expanded="false"><span class="educate-icon educate-student icon-wrap" aria-hidden="true"></span> <span class="mini-click-non">Data Pasien</span></a>
+                                
+                        
+                         
+                                
+                                
+                            
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                        
+                       
+                        
+                       
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
