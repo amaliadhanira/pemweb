@@ -163,8 +163,7 @@ INSERT INTO `lab` (`id_examiner`, `nama_examiner`, `alamat`, `no_telp`) VALUES
 
 CREATE TABLE `laporan_pemeriksaan` (
   `id_laporan` int(20) NOT NULL,
-  `id_pasien` int(20) NOT NULL,
-  `id_dokter` int(20) NOT NULL,
+  `no_antrean` int(20) NOT NULL,
   `diagnosa` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -172,11 +171,9 @@ CREATE TABLE `laporan_pemeriksaan` (
 -- Dumping data for table `laporan_pemeriksaan`
 --
 
-INSERT INTO `laporan_pemeriksaan` (`id_laporan`, `id_pasien`, `id_dokter`, `diagnosa`) VALUES
-(1, 2000001, 1000002, 'Pasang behel'),
-(2, 2000002, 1000001, 'Disentri'),
-(3, 2000004, 1000000, 'Campak jerman'),
-(4, 2000003, 1000003, 'Tambal gigi');
+INSERT INTO `laporan_pemeriksaan` (`id_laporan`, `no_antrean`, `diagnosa`) VALUES
+(1, 1, 'Campak Jerman'),
+(2, 2, 'Disentri');
 
 -- --------------------------------------------------------
 
@@ -245,22 +242,20 @@ INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `tanggal_lahir`, `username`, `
 --
 
 CREATE TABLE `resep_obat` (
+  `id_resep` int(20) NOT NULL,
   `id_laporan` int(20) NOT NULL,
   `id_obat` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 --
 -- Dumping data for table `resep_obat`
 --
 
-INSERT INTO `resep_obat` (`id_laporan`, `id_obat`) VALUES
-(2, 103),
-(2, 102),
-(3, 102),
-(1, 105),
-(4, 106),
-(4, 105),
-(3, 104);
+INSERT INTO `resep_obat` (`id_resep`, `id_laporan`, `id_obat`) VALUES
+(1, 1, 105),
+(2, 2, 102),
+(3, 1, 104);
 
 /*CREATE TABLE IF NOT EXISTS `tokens` (
   `id_token` int(11) NOT NULL AUTO_INCREMENT,
@@ -318,8 +313,7 @@ ALTER TABLE `lab`
 --
 ALTER TABLE `laporan_pemeriksaan`
   ADD PRIMARY KEY (`id_laporan`),
-  ADD KEY `id_pasien_lap` (`id_pasien`),
-  ADD KEY `id_dokter_lap` (`id_dokter`);
+  ADD KEY `no_antrean_lap` (`no_antrean`);
 
 --
 -- Indexes for table `obat`
@@ -338,6 +332,7 @@ ALTER TABLE `pasien`
 -- Indexes for table `resep_obat`
 --
 ALTER TABLE `resep_obat`
+  ADD PRIMARY KEY (`id_resep`),
   ADD KEY `id_laporan_resep` (`id_laporan`),
   ADD KEY `id_obat_resep` (`id_obat`);
 
@@ -383,7 +378,7 @@ ALTER TABLE `lab`
 -- AUTO_INCREMENT for table `laporan_pemeriksaan`
 --
 ALTER TABLE `laporan_pemeriksaan`
-  MODIFY `id_laporan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_laporan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `obat`
@@ -396,6 +391,12 @@ ALTER TABLE `obat`
 --
 ALTER TABLE `pasien`
   MODIFY `id_pasien` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2000005;
+
+--
+-- AUTO_INCREMENT for table `resep_obat`
+--
+ALTER TABLE `resep_obat`
+  MODIFY `id_resep` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -412,8 +413,7 @@ ALTER TABLE `antrean`
 -- Constraints for table `laporan_pemeriksaan`
 --
 ALTER TABLE `laporan_pemeriksaan`
-  ADD CONSTRAINT `id_dokter_lap` FOREIGN KEY (`id_dokter`) REFERENCES `dokter` (`id_dokter`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `id_pasien_lap` FOREIGN KEY (`id_pasien`) REFERENCES `pasien` (`id_pasien`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `no_antrean_lap` FOREIGN KEY (`no_antrean`) REFERENCES `antrean` (`no_antrean`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `resep_obat`
