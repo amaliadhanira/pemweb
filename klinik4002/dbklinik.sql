@@ -262,13 +262,13 @@ INSERT INTO `resep_obat` (`id_laporan`, `id_obat`) VALUES
 (4, 105),
 (3, 104);
 
-CREATE TABLE IF NOT EXISTS `tokens` (
+/*CREATE TABLE IF NOT EXISTS `tokens` (
   `id_token` int(11) NOT NULL AUTO_INCREMENT,
   `token` varchar(255) NOT NULL,
   `id_admin` int(11) NOT NULL,
   `id_pasien` int(11) NOT NULL,
   `created` date NOT NULL
-);
+);*/
 
 --
 -- Indexes for dumped tables
