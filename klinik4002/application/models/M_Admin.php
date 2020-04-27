@@ -219,6 +219,6 @@ class M_Admin extends CI_Model{
 		$this->db->select('id_admin');
 		$this->db->where('sha1(admin.email)"-"admin.password) = $token');
 		$this->db->get('admin');*/
-	}
+	
 }
 ?>

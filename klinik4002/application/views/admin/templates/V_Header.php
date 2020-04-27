@@ -66,38 +66,34 @@
 	<div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="index.html"><img class="main-logo" src="img/tp-logo-png.png" width="100" /></a>
+                <a href="<? site_url('admin/adminpage') ?>"><img class="main-logo" src="<?php echo base_url(); ?>assets/img/tp-logo-png.png" width="100" /></a>
                 <strong><a href="index.html"><img src="" alt="" /></a></strong>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li class="active">
-                            
-                   
-                   <a title="Landing Page" href="Index-Admin.html" aria-expanded="false"><span class="educate-icon educate-home icon-wrap" aria-hidden="true"></span> <span class="mini-click-non">Dashboard</span></a>
+                   <a title="Landing Page" href="<?= site_url('admin/adminpage') ?>" aria-expanded="false"><span class="educate-icon educate-home icon-wrap" aria-hidden="true"></span> <span class="mini-click-non">Dashboard</span></a>
                         </li>
                         <li>
-                            <a title="Landing Page" href="Antrean.html" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Antrean</span></a>
+                            <a title="Landing Page" href="<? site_url('admin/antrean') ?>" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Antrean</span></a>
                         </li>
                         <li>
-                            <a class="has-arrow" href="semua_dokter.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Data Dokter</span></a>
+                            <a class="has-arrow" href="<? site_url('admin/dokter') ?>" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Data Dokter</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="semua dokter" href="semua_dokter.html"><span class="mini-sub-pro">Semua Dokter</span></a></li>
-                                <li><a title="tambah dokter" href="Tambah_dokter.html"><span class="mini-sub-pro">Menambahkan Dokter</span></a></li>
-                                <li><a title="Edit Dokter" href="edit-dokter.html"><span class="mini-sub-pro">Edit Dokter</span></a></li>
+                                <li><a title="semua dokter" href="<? site_url('admin/dokter') ?>"><span class="mini-sub-pro">Semua Dokter</span></a></li>
+                                <li><a title="tambah dokter" href="<? site_url('admin/dokter/new_dokter') ?>"><span class="mini-sub-pro">Menambahkan Dokter</span></a></li>
+                                <li><a title="Edit Dokter" href="<? site_url('admin/dokter/edit_dokter') ?>"><span class="mini-sub-pro">Edit Dokter</span></a></li>
                             </ul>
                         </li>
                         <li>
-                            
-                            <a title="Landing Page" href="Data_Pasien.html" aria-expanded="false"><span class="educate-icon educate-student icon-wrap" aria-hidden="true"></span> <span class="mini-click-non">Data Pasien</span></a>
+                            <a title="Landing Page" href="<? site_url('admin/pasien') ?>" aria-expanded="false"><span class="educate-icon educate-student icon-wrap" aria-hidden="true"></span> <span class="mini-click-non">Data Pasien</span></a>
                                 
                         
                          
                                 
-                                
-                            
-                            </ul>
+                    
+                            <!--/ul-->
                         </li>
                         
                         
@@ -111,3 +107,49 @@
             </div>
         </nav>
     </div>
+    <div class="all-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="header-advance-area">
+            <div class="header-top-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="header-top-wraper">
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
+                                        <div class="menu-switcher-pro">
+                                            <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
+                                                    <i class=""></i>
+                                                </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
+                                        <div class="header-top-menu tabl-d-n">
+                                            <ul class="nav navbar-nav mai-top-nav">
+                                               
+                                               
+                                                  
+                                                </li>
+                                                
+                                               
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                        <div class="header-right-info">
+                                            <ul class="nav navbar-nav mai-top-nav header-right-menu">
+                                                <li class="">
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="" aria-hidden="true"></i><span class=""></span></a>
+                                                    <div role="menu" class="author-message-top dropdown-menu animated zoomIn">
+                                                        <div class="">
+                                                        
+                                                <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="educate-icon educate-bell" aria-hidden="true"></i><span class="indicator-nt"></span></a>
+                                                    <div role="menu" class="notification-author dropdown-menu animated zoomIn">
+                                                        <div class="notification-single-top">
+                                                            <h1>Notifications</h1>
+                                                        </div>
