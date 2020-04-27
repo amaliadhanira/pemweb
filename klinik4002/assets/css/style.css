@@ -4815,7 +4815,7 @@ body {
 }
 
 .forget-password a {
-  padding-bottom: 16px;
+  padding-bottom: 20px;
   text-align: right;
   color: var(--var-color-primary);
   display: block;
@@ -4869,7 +4869,7 @@ label.animated-label.moveUp {
 
 .signup-label {
   display: block;
-  margin-top: 16px;
+  margin-top: 40px;
   font-size: 14px;
   text-align: left;
 }
