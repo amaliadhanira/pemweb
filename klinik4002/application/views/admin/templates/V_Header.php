@@ -8,59 +8,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- favicon
     ============================================ -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/tp-logo-png.png">
+    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/img/tp-logo-png.png') ?>">
     <!-- Google Fonts
     ============================================ -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
     <!-- Bootstrap CSS
     ============================================ -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
     <!-- Bootstrap CSS
     ============================================ -->
-    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/font-awesome.min.css') ?>">
     <!-- owl.carousel CSS
     ============================================ -->
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/owl.theme.css">
-    <link rel="stylesheet" href="css/owl.transitions.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/owl.carousel.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/owl.theme.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/owl.transitions.css') ?>">
     <!-- animate CSS
     ============================================ -->
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/animate.css') ?>">
     <!-- normalize CSS
     ============================================ -->
-    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/normalize.css') ?>">
     <!-- meanmenu icon CSS
     ============================================ -->
-    <link rel="stylesheet" href="css/meanmenu.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/meanmenu.min.css') ?>">
     <!-- main CSS
     ============================================ -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/main.css') ?>">
     <!-- educate icon CSS
     ============================================ -->
-    <link rel="stylesheet" href="css/educate-custon-icon.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/educate-custon-icon.css') ?>">
     <!-- morrisjs CSS
     ============================================ -->
-    <link rel="stylesheet" href="css/morrisjs/morris.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/morrisjs/morris.css') ?>">
     <!-- mCustomScrollbar CSS
     ============================================ -->
-    <link rel="stylesheet" href="css/scrollbar/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/scrollbar/jquery.mCustomScrollbar.min.css') ?>">
     <!-- metisMenu CSS
     ============================================ -->
-    <link rel="stylesheet" href="css/metisMenu/metisMenu.min.css">
-    <link rel="stylesheet" href="css/metisMenu/metisMenu-vertical.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/metisMenu/metisMenu.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/metisMenu/metisMenu-vertical.css') ?>">
     <!-- calendar CSS
     ============================================ -->
-    <link rel="stylesheet" href="css/calendar/fullcalendar.min.css">
-    <link rel="stylesheet" href="css/calendar/fullcalendar.print.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/calendar/fullcalendar.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/calendar/fullcalendar.print.min.css') ?>">
     <!-- style CSS
     ============================================ -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<?= base_url('assets/style.css') ?>">
     <!-- responsive CSS
     ============================================ -->
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/responsive.css') ?>">
     <!-- modernizr JS
     ============================================ -->
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="<?= base_url('assets/js/vendor/modernizr-2.8.3.min.js') ?>"></script>
 </head>
 <body>
 	<div class="left-sidebar-pro">
@@ -73,13 +73,13 @@
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
                         <li class="active">
-                   <a title="Landing Page" href="<?= site_url('admin/adminpage') ?>" aria-expanded="false"><span class="educate-icon educate-home icon-wrap" aria-hidden="true"></span> <span class="mini-click-non">Dashboard</span></a>
+                   <a title="Landing Page" href="<?= site_url('admin/adminpage') ?>" aria-expanded="false"><span class="mini-click-non">Dashboard</span></a>
                         </li>
                         <li>
-                            <a title="Landing Page" href="<? site_url('admin/antrean') ?>" aria-expanded="false"><span class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Antrean</span></a>
+                            <a title="Landing Page" href="<? site_url('admin/antrean') ?>" aria-expanded="false"><span class="mini-click-non">Antrean</span></a>
                         </li>
                         <li>
-                            <a class="has-arrow" href="<? site_url('admin/dokter') ?>" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Data Dokter</span></a>
+                            <a class="has-arrow" href="<? site_url('admin/dokter') ?>" aria-expanded="false"><span class="mini-click-non">Data Dokter</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="semua dokter" href="<? site_url('admin/dokter') ?>"><span class="mini-sub-pro">Semua Dokter</span></a></li>
                                 <li><a title="tambah dokter" href="<? site_url('admin/dokter/new_dokter') ?>"><span class="mini-sub-pro">Menambahkan Dokter</span></a></li>
@@ -87,7 +87,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a title="Landing Page" href="<? site_url('admin/pasien') ?>" aria-expanded="false"><span class="educate-icon educate-student icon-wrap" aria-hidden="true"></span> <span class="mini-click-non">Data Pasien</span></a>
+                            <a title="Landing Page" href="<? site_url('admin/pasien') ?>" aria-expanded="false"><span class="mini-click-non">Data Pasien</span></a>
                                 
                         
                          
@@ -153,3 +153,167 @@
                                                         <div class="notification-single-top">
                                                             <h1>Notifications</h1>
                                                         </div>
+                                                         <ul class="notification-menu">
+                                                            <li>
+                                                                <a href="#">
+                                                                    <div class="notification-icon">
+                                                                        <i class="educate-icon educate-checked edu-checked-pro admin-check-pro" aria-hidden="true"></i>
+                                                                    </div>
+                                                                    <div class="notification-content">
+                                                                        <span class="notification-date">16 Sept</span>
+                                                                        <h2> New </h2>
+                                                                        <p>Anda baru saja mengedit data dokter</p>
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <div class="notification-icon">
+                                                                        <i class="fa fa-cloud edu-cloud-computing-down" aria-hidden="true"></i>
+                                                                    </div>
+                                                                    <div class="notification-content">
+                                                                        <span class="notification-date">16 Sept</span>
+                                                                        <h2> New </h2>
+                                                                        <p>Anda baru saja menambahkan dokter</p>
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">
+                                                                    <div class="notification-icon">
+                                                                        <i class="fa fa-eraser edu-shield" aria-hidden="true"></i>
+                                                                    </div>
+                                                                    <div class="notification-content">
+                                                                        <span class="notification-date">16 Sept</span>
+                                                                        <h2> New </h2>
+                                                                        <p>Anda baru saja menghapus pasien</p>
+                                                                    </div>
+                                                                </a>
+                                                            </li>
+                                                            
+                                                        <div class="notification-view">
+                                                            <a href="#">View All Notification</a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                                            <img src="img/product/pro4.jpg" alt="" />
+                                                            <span class="admin-name">Susi Susanti</span>
+                                                            <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+                                                        </a>
+                                                    <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                                       
+                                                        <li><a href="Login(Masuk).html"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li class="n"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class=""></i></a>
+
+                                                    <div role="menu" class="admintab-wrap menu-setting-wrap menu-setting-wrap-bg dropdown-menu animated zoomIn">
+                                                        <ul class="nav nav-tabs custon-set-tab">
+                                                         
+                                                        </ul>
+
+                                                        <div class="">
+                                                            <div id="" class="">
+                                                                <div class="">
+                                                                    <div class="">
+                                                                      
+                                                                    </div>
+                                                                    <div class="">
+                                                                        <ul class="">
+                                                                            <li>
+                                                                                <a href="#">
+                                                                                    <div class="notes-list-flow">
+                                                                                        <div class="notes-img">
+                                                                                        
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#">
+                                                                                    <div class="notes-list-flow">
+                                                                                        <div class="notes-img">
+                                                                                      
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#">
+                                                                                    <div class="notes-list-flow">
+                                                                                        <div class="notes-img">
+                                                                                        
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#">
+                                                                                    <div class="notes-list-flow">
+                                                                                        <div class="notes-img">
+                                                                                          
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#">
+                                                                                    <div class="notes-list-flow">
+                                                                                        <div class="notes-img">
+                                                                                         
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#">
+                                                                                    <div class="notes-list-flow">
+                                                                                        <div class="notes-img">
+                                                                                         
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#">
+                                                                                    <div class="notes-list-flow">
+                                                                                        <div class="notes-img">
+                                                                                         
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#">
+                                                                                    <div class="notes-list-flow">
+                                                                                        <div class="notes-img">
+                                                                                      
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#">
+                                                                                    <div class="notes-list-flow">
+                                                                                        <div class="notes-img">
+                                                                                           
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <a href="#">
+                                                                                    <div class="notes-list-flow">
+                                                                                        <div class="notes-img">
+                                                                                           
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
