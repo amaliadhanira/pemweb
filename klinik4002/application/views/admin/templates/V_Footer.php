@@ -30,5 +30,24 @@
 <script src="<?= base_url('assets/js/dt_admin.js') ?>"></script>
 
 <footer class="footer text-center">
-	<span class="text-muted">&copy; 2020 Klinik Tongpang</span>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br><span class="text-muted">&copy; 2020 Klinik Tongpang</span>
 </footer>

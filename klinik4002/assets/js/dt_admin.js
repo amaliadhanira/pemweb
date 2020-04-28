@@ -33,12 +33,11 @@ $(document).ready(function(){
     //ON CLICK BUTTON BUAT ADMIN
    $('#buat_admin').on('click', function(){
     aksi = 'add';
-    $('#form_antrean')[0].reset();
+    $('#form_admin')[0].reset();
     $('.form-group').removeClass('has-error');
-    $('.help-block').empty();
 
     $.ajax({
-      url: "http://localhost/klinik4002/admin/adminpage/buat_admin",
+      url: "http://localhost/klinik4002/admin/adminpage/new_admin",
       type: "GET",
       dataType: "JSON",
       success: function(data){
@@ -90,7 +89,7 @@ $(document).ready(function(){
 
     if (confirm('Apakah Anda yakin ingin menghapus admin?')){
       $.ajax({
-        url: "http://localhost/klinik4002/admin/adminpage/hapus_admin/" + id_admin,
+        url: "http://localhost/klinik4002/admin/adminpage/delete_by_id/" + id_admin,
         type: "POST",
         data: $('#form_admin').serialize(),
         dataType: "JSON",

@@ -10,6 +10,15 @@ class Dokter extends CI_Controller {
 		$this->load->helper('form');
 	}
 
+	function index(){
+		$data['title'] = 'Home';
+		$data['page'] = 'home';
+		$this->load->view('admin/templates/v_header', $data);
+		$this->load->view('admin/home', $data);
+		$this->load->view('admin/templates/v_footer', $data);
+	}
+
+
 	function dokter(){
 		$data['title'] = 'Dokter';
 		$data['page'] = 'dokter';
@@ -47,34 +56,6 @@ class Dokter extends CI_Controller {
 		);
 
 		echo json_encode($output);
-	}
-
-	private function upload_foto($id_dokter = ''){
-		if( ! is_numeric($id_dokter)){
-			redirect('admin/dokter');
-		}else{
-			$data_view = $this->m_dokter->get_by_id($id_dokter);
-			if($data_view === NULL){
-				redirect('admin/dokter');
-			}
-			
-			$config['upload_path'] = './images/dokter/';
-			$config['allowed_types'] = 'jpg';
-			$config['max_width']  = '250';
-			$config['max_height']  = '250';
-			$config['overwrite'] = TRUE;
-			$config['file_name'] = $id;
-		
-			$this->set_judul('upload foto &raquo; ' . $data_view['nama_dokter']);
-
-			$this->load->library('upload', $config);
-		
-				if ( ! $this->upload->do_upload('avatar')){
-					$this->set_feedback($this->upload->display_errors('',''), 'error');
-				}else{
-					$this->set_feedback('Sukses upload avatar', 'sukses');
-				}	
-		}
 	}
 
 	function cek_edit($data_edit, $data_before){
