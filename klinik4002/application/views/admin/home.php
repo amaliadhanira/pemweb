@@ -59,6 +59,7 @@
     ============================================ -->
     <script src="<?= base_url('assets/js/vendor/modernizr-2.8.3.min.js') ?>"></script>
 </head>
+
 <div class="breadcome-area">
     <div class="container-fluid">
         <div class="row">
