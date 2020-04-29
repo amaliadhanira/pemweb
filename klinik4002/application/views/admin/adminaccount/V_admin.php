@@ -10,7 +10,6 @@
 						<th scope="col">Alamat</th>
 						<th scope="col">Username</th>
 						<th scope="col">Nomor Telepon</th>
-						<th scope="col">Username</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -18,7 +17,7 @@
 			</table>	
 	</div>
 </div>
-<div class="modal fade" id="modal_admin" role="dialog">
+<!--div class="modal fade" id="modal_admin" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -60,4 +59,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div-->

@@ -2,8 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Admin extends CI_Model{
-	var $column_order = array(null, 'username', 'nama_admin', 'no_telp');
-	var $column_search = array('username', 'nama_sadmin');
+	var $column_order = array(null, 'username', 'nama_admin');
+	var $column_search = array('username', 'nama_admin');
 	var $order = array('nama_admin' => 'asc');
 	var $table = 'admin';
 
@@ -155,7 +155,7 @@ class M_Admin extends CI_Model{
 	function new_admin($data_admin){
 		$data = array(
 			'id_admin' => $data_admin['id_admin'],
-			'nama_admin' => $data_admin['nama_admin'];
+			'nama_admin' => $data_admin['nama_admin'],
 			'email' => $data_admin['email'],
 			'alamat' => $data_admin['alamat'],
 			'no_telp' => $data_admin['no_telp'],
