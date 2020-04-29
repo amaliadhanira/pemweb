@@ -7,6 +7,8 @@
                         <th scope="col">#</th>
                         <th scope="col">Nama Dokter</th>
                         <th scope="col">Spesialis</th>
+                        <th scope="col">Jadwal</th>
+                        <th scope="col">Alamat</th>
                         <th scope="col">Nomor Telepon</th>
                     </tr>
                 </thead>

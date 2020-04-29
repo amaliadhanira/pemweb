@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title><?= $title ?></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/img/tp-logo-png.png') ?>">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
@@ -47,16 +47,22 @@
                             <a href="<?= site_url('adminpage') ?>" aria-expanded="false"><span class="mini-click-non">Home</span></a>
                         </li>
                         <li>
-                            <a href="<?= site_url('adminpage/antrean') ?>" aria-expanded="false"><span class="mini-click-non">Antrean</span></a>
+                            <a href="<?= site_url('adminpage/admin') ?>" aria-expanded="false"><span class="mini-click-non">Admin</span></a>
                         </li>
                         <li>
-                            <a href="<?= site_url('adminpage/dokter') ?>" aria-expanded="false"><span class="mini-click-non">Dokter</span></a>
+                            <a href="<?= site_url('adminpage/antrean') ?>" aria-expanded="false"><span class="mini-click-non">Antrean</span></a>
                         </li>
                         <li>
                             <a href="<?= site_url('adminpage/pasien') ?>" aria-expanded="false"><span class="mini-click-non">Pasien</span></a>
                         </li>
                         <li>
-                            <a href="<?= site_url('adminpage/data_admin') ?>" aria-expanded="false"><span class="mini-click-non">Admin</span></a>
+                            <a href="<?= site_url('adminpage/dokter') ?>" aria-expanded="false"><span class="mini-click-non">Dokter</span></a>
+                        </li>
+                        <li>
+                            <a href="<?= site_url('adminpage/dokter') ?>" aria-expanded="false"><span class="mini-click-non">Lab</span></a>
+                        </li>
+                        <li>
+                            <a href="<?= site_url('adminpage/dokter') ?>" aria-expanded="false"><span class="mini-click-non">Farmasi</span></a>
                         </li>
                         <li>
                             <a href="<?= site_url('adminpage/laporan_pasien') ?>" aria-expanded="false"><span class="mini-click-non">Laporan Pemeriksaan<br>Pasien</span></a>

@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Admin extends CI_Model{
-	var $column_order = array(null, 'username', 'nama_admin');
+	var $column_order = array(null, 'nama_admin', 'email', 'alamat', 'username', 'no_telp');
 	var $column_search = array('username', 'nama_admin');
 	var $order = array('nama_admin' => 'asc');
 	var $table = 'admin';

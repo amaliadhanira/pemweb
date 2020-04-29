@@ -29,5 +29,6 @@ $(document).ready(function(){
       table.ajax.reload(null, false);
     }
 
+
 })
    
