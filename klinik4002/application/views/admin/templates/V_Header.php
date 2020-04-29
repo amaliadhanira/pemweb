@@ -42,19 +42,21 @@
                             <a title="Landing Page" href="<?= site_url('admin/adminpage') ?>" aria-expanded="false"><span class="mini-click-non">Home</span></a>
                         </li>
                         <li>
-                            <a title="Landing Page" href="<? site_url('admin/antrean') ?>" aria-expanded="false"><span class="mini-click-non">Antrean</span></a>
+                            <a title="Landing Page" href="<? site_url('admin/adminpage/antrean') ?>" aria-expanded="false"><span class="mini-click-non">Antrean</span></a>
                         </li>
                         <li>
-                            <a title="Landing Page" href="<? site_url('admin/dokter') ?>" aria-expanded="false"><span class="mini-click-non">Dokter</span></a>
+                            <a title="Landing Page" href="<? site_url('admin/adminpage/dokter') ?>" aria-expanded="false"><span class="mini-click-non">Dokter</span></a>
                         </li>
                         <li>
-                            <a title="Landing Page" href="<? site_url('admin/pasien') ?>" aria-expanded="false"><span class="mini-click-non">Pasien</span></a>
+                            <a title="Landing Page" href="<? site_url('admin/adminpage/pasien') ?>" aria-expanded="false"><span class="mini-click-non">Pasien</span></a>
                     <!--/ul-->
                         </li>
                         <li>
-                            <a title="Landing Page" href="<? site_url('admin/adminpage') ?>" aria-expanded="false"><span class="mini-click-non">Admin</span></a>
+                            <a title="Landing Page" href="<? site_url('admin/adminpage/data_admin') ?>" aria-expanded="false"><span class="mini-click-non">Admin</span></a>
                         </li>
-
+                        <li>
+                            <a title="Landing Page" href="<? site_url('admin/adminpage/laporan_pasien') ?>" aria-expanded="false"><span class="mini-click-non">Laporan Pemeriksaan<br>Pasien</span></a>
+                        </li>
                     </ul>
                     <span class="navbar-text">
                     <strong>Halo, <?= $this->session->username; ?></strong>
