@@ -13,6 +13,7 @@ class Adminpage extends CI_Controller{
 		$this->load->model('m_dokter');
 		$this->load->model('m_pasien');
 		$this->load->model('m_antrean');
+		$this->load->model('m_antrean_saya');
 		$this->load->model('m_laporan_pemeriksaan');
 	}
 
@@ -28,7 +29,7 @@ class Adminpage extends CI_Controller{
 		$data['title'] = 'Admin';
 		$data['page'] = 'admin';
 		$this->load->view('admin/templates/v_header', $data);
-		$this->load->view('admin/adminaccount/v_admin', $data);
+		$this->load->view('admin/v_admin', $data);
 		$this->load->view('admin/templates/v_footer', $data);
 	}
 

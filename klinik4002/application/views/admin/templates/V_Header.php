@@ -26,6 +26,11 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/calendar/fullcalendar.print.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/responsive.css') ?>">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha256-siyOpF/pBWUPgIcQi17TLBkjvNgNQArcmwJB8YvkAgg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url('assets/css/datepicker_style.css') ?>" type="text/css">
     <script src="<?= base_url('assets/js/vendor/modernizr-2.8.3.min.js') ?>"></script>
 </head>
 <body>
@@ -33,29 +38,28 @@
 	<div class="left-sidebar-pro">
         <nav id="sidebar" class="">
             <div class="sidebar-header">
-                <a href="<? site_url('admin/adminpage') ?>"><img class="main-logo" src="<?php echo base_url(); ?>assets/img/tp-logo-png.png" width="100" /></a>
+                <a href="<? site_url('adminpage') ?>"><img class="main-logo" src="<?php echo base_url(); ?>assets/img/tp-logo-png.png" width="100" /></a>
             </div>
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
-                        <li class="active">
-                            <a title="Landing Page" href="<?= site_url('admin/adminpage') ?>" aria-expanded="false"><span class="mini-click-non">Home</span></a>
+                        <li>
+                            <a href="<?= site_url('adminpage') ?>" aria-expanded="false"><span class="mini-click-non">Home</span></a>
                         </li>
                         <li>
-                            <a title="Landing Page" href="<? site_url('admin/adminpage/antrean') ?>" aria-expanded="false"><span class="mini-click-non">Antrean</span></a>
+                            <a href="<?= site_url('adminpage/antrean') ?>" aria-expanded="false"><span class="mini-click-non">Antrean</span></a>
                         </li>
                         <li>
-                            <a title="Landing Page" href="<? site_url('admin/adminpage/dokter') ?>" aria-expanded="false"><span class="mini-click-non">Dokter</span></a>
+                            <a href="<?= site_url('adminpage/dokter') ?>" aria-expanded="false"><span class="mini-click-non">Dokter</span></a>
                         </li>
                         <li>
-                            <a title="Landing Page" href="<? site_url('admin/adminpage/pasien') ?>" aria-expanded="false"><span class="mini-click-non">Pasien</span></a>
-                    <!--/ul-->
+                            <a href="<?= site_url('adminpage/pasien') ?>" aria-expanded="false"><span class="mini-click-non">Pasien</span></a>
                         </li>
                         <li>
-                            <a title="Landing Page" href="<? site_url('admin/adminpage/data_admin') ?>" aria-expanded="false"><span class="mini-click-non">Admin</span></a>
+                            <a href="<?= site_url('adminpage/data_admin') ?>" aria-expanded="false"><span class="mini-click-non">Admin</span></a>
                         </li>
                         <li>
-                            <a title="Landing Page" href="<? site_url('admin/adminpage/laporan_pasien') ?>" aria-expanded="false"><span class="mini-click-non">Laporan Pemeriksaan<br>Pasien</span></a>
+                            <a href="<?= site_url('adminpage/laporan_pasien') ?>" aria-expanded="false"><span class="mini-click-non">Laporan Pemeriksaan<br>Pasien</span></a>
                         </li>
                     </ul>
                     <span class="navbar-text">

@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
   /* JQUERY/AJAX DATATABLES ADMIN */
+
   var table;
   
 //DATATABLES ADMIN
@@ -13,7 +14,7 @@ $(document).ready(function(){
       },
 
       "ajax": {
-          "url": "http://localhost/klinik4002/admin/adminpage/data_admin",
+          "url": "http://localhost/klinik4002/adminpage/data_admin",
           "type": "POST",
           "dataType": "JSON"
       },
@@ -28,5 +29,5 @@ $(document).ready(function(){
       table.ajax.reload(null, false);
     }
 
-  })
+})
    
