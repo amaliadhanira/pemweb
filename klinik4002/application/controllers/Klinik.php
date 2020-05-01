@@ -65,16 +65,44 @@ class Klinik extends CI_Controller{
 	function jumlah_antrean(){
 		$data['title'] = 'Jumlah Antrean Hari Ini';
 		$data['page'] = 'jumlah_antrean';
-		$data['antrean'] = $this->m_antrean->get_jumlah();
 		$this->load->view('pasien/templates/v_header', $data);
 		$this->load->view('pasien/v_jumlah_antrean', $data);
 		$this->load->view('pasien/templates/v_footer', $data);
 	}
 
+	/* CONTROLLER FUNCTIONS FOR DATATABLE JUMLAH ANTREAN */
+	function data_jumlah_antrean(){
+		$antrean = $this->m_antrean->get_datatables();
+		$data = array();
+		$no = $this->input->post('start');
+
+		foreach($antrean as $ant) {
+			$dis = '';
+			$no++;
+			$row = array();
+			$row[] = $no;
+			$row[] = $ant['nama_dokter'];
+			$row[] = $ant['nama_spesialisasi'];
+			$row[] = $ant['jumlah_antrean'];
+
+			$data[] = $row;
+		}
+
+		$output = array(
+						"draw" => $this->input->post('draw'),
+						"recordsTotal" => $this->m_antrean->count_all(),
+						"recordsFiltered" => $this->m_antrean->count_filtered(),
+						"data" => $data,
+		);
+
+		echo json_encode($output);
+	}
+
+	/* END OF CONTROLLER FUNCTIONS FOR DATATABLE JUMLAH ANTREAN */
+
 	function antrean_saya(){
 		$data['title'] = 'Antrean Saya';
 		$data['page'] = 'antrean_saya';
-		$data['dokter'] = $this->m_dokter->get_all();
 		$this->load->view('pasien/templates/v_header', $data);
 		$this->load->view('pasien/v_antrean_saya', $data);
 		$this->load->view('pasien/templates/v_footer', $data);
@@ -237,7 +265,7 @@ class Klinik extends CI_Controller{
 		);
 
 		if ($this->form_validation->run() == FALSE){
-			redirect('klinik/ubah_profil');
+			$this->ubah_profil();
 		} else {
 			if ($this->m_pasien->match_password($id_pasien, $password)){
 			$data['info_msg'] = $this->session->set_flashdata('info_msg', 'success');
@@ -245,8 +273,8 @@ class Klinik extends CI_Controller{
 			} else {
 			$data['info_msg'] = $this->session->set_flashdata('info_msg', 'error');
 			}
+			$this->ubah_profil();
 		}
-		redirect('klinik/ubah_profil');
 	}
 
 }
