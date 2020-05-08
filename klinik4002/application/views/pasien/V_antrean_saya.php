@@ -1,8 +1,7 @@
-<div class="container">
-	<div class="col-md-12">
+<div class="container mt-5">
+	<div class="col col-md-12 p-3">
 		<h1>Antrean Saya</h1>
-		<div class="float-left p-2"><button class="btn btn-sm btn-primary" id="daftar_antrean">Daftar Antrean</button></div>
-		<div class="p-2">
+		<div class="float-left"><button class="btn btn-sm btn-primary" id="daftar_antrean">Daftar Antrean</button></div>
 			<table class="table table-hover" id="table_antrean_saya" style="width: 100%">
 				<thead>
 					<tr>
@@ -16,7 +15,6 @@
 				<tbody>
 				</tbody>
 			</table>
-		</div>
 	</div>
 </div>
 

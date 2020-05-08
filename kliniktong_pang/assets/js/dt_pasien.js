@@ -15,7 +15,7 @@ $(document).ready(function(){
       },
 
       "ajax": {
-          "url": "http://localhost/klinik4002/admin/pasien",
+          "url": "http://localhost/klinik4002/adminpage/data_pasien",
           "type": "POST",
           "dataType": "JSON"
       },
@@ -36,7 +36,7 @@ $(document).ready(function(){
 
     if (confirm('Apakah Anda yakin ingin menghapus pasien?')){
       $.ajax({
-        url: "http://localhost/klinik4002/admin/pasien/hapus_pasien/" + id_pasien,
+        url: "http://localhost/klinik4002/adminpage/hapus_pasien/" + id_pasien,
         type: "POST",
         data: $('#form_pasien').serialize(),
         dataType: "JSON",

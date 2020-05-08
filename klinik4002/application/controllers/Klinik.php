@@ -9,7 +9,7 @@ class Klinik extends CI_Controller{
 			redirect(base_url());
 		}
 
-		$this->load->model('m_antrean');
+		$this->load->model('m_jumlah_antrean');
 		$this->load->model('m_antrean_saya');
 		$this->load->model('m_dokter');
 		$this->load->model('m_pasien');
@@ -45,6 +45,7 @@ class Klinik extends CI_Controller{
 			$row[] = $no;
 			$row[] = $dok['nama_dokter'];
 			$row[] = $dok['nama_spesialisasi'];
+			$row[] = $dok['jadwal'];
 			$row[] = $dok['no_telp'];
 
 			$data[] = $row;
@@ -72,7 +73,7 @@ class Klinik extends CI_Controller{
 
 	/* CONTROLLER FUNCTIONS FOR DATATABLE JUMLAH ANTREAN */
 	function data_jumlah_antrean(){
-		$antrean = $this->m_antrean->get_datatables();
+		$antrean = $this->m_jumlah_antrean->get_datatables();
 		$data = array();
 		$no = $this->input->post('start');
 
@@ -90,8 +91,8 @@ class Klinik extends CI_Controller{
 
 		$output = array(
 						"draw" => $this->input->post('draw'),
-						"recordsTotal" => $this->m_antrean->count_all(),
-						"recordsFiltered" => $this->m_antrean->count_filtered(),
+						"recordsTotal" => $this->m_jumlah_antrean->count_all(),
+						"recordsFiltered" => $this->m_jumlah_antrean->count_filtered(),
 						"data" => $data,
 		);
 

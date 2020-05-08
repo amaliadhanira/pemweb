@@ -1,6 +1,8 @@
-<div class="container">
-    <div class="col-md-12">
-        <h1>Daftar Dokter</h1>
+<div class="container mt-5">
+    <div class="col col-md-12 p-3">
+        <h1>Data Dokter</h1>
+        <?= validation_errors('<div class="error alert alert-danger" role="alert">', '</div>') ?>
+        <div class="float-left"><button class="btn btn-sm btn-primary" id="tambah_dokter">Tambah Dokter</button></div>
             <table class="table table-hover" id="table_dokter" style="width: 100%">
                 <thead>
                     <tr>
@@ -10,10 +12,68 @@
                         <th scope="col">Jadwal</th>
                         <th scope="col">Alamat</th>
                         <th scope="col">Nomor Telepon</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                 </tbody>
-            </table>
+            </table>    
+    </div>
+</div>
+
+<!-- MODAL TAMBAH / UBAH ADMIN -->
+<div class="modal fade" id="modal_dokter" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal_dokter_label">Form Dokter</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body form">
+                <form action="" id="form_dokter" class="form-horizontal">
+                    <input type="hidden" name="id_admin" value="">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label for="nama_dokter" class="col-form-label">Nama Dokter:</label>
+                            <input type="text" name="nama_dokter" class="form-control" placeholder="Nama Lengkap">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_telp" class="col-form-label">Spesialis:</label>
+                            <select name="dokter" id="dokter" class="form-control">
+                                <?php foreach ($dokter as $dok) { ?>
+                                    <option value="<?= $dok['id_spesialisasi'] ?>"><?= $dok['nama_spesialisasi'] ?></option>
+                                <?php 
+                                $val_id_dok = $dok['id_dokter'];
+                            } ?>
+                            </select>
+                            <input type="hidden" name="id_dokter" value="">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="jadwal" class="col-form-label">Jadwal:</label>
+                            <input type="text" name="jadwal" class="form-control" placeholder="Jadwal">
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="alamat" class="col-form-label">Alamat:</label>
+                            <textarea name="alamat" class="form-control" placeholder="Alamat"></textarea>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_telp" class="col-form-label">Nomor Telepon:</label>
+                            <input type="text" name="no_telp" class="form-control" placeholder="Nomor Telepon">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btn_simpan_dokter" class="btn btn-primary">Simpan</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+            </div>
+        </div>
     </div>
 </div>

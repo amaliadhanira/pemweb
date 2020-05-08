@@ -5,7 +5,7 @@ class M_Pasien extends CI_Model{
 	var $column_order = array(null, 'nama_pasien', 'tanggal_lahir','username', 'alamat', 'no_telp','email','username');
 	var $column_search = array('nama_pasien', 'username');
 	var $order = array('username' => 'asc');
-	var $table = 'username';
+	var $table = 'pasien';
 
 	function __construct(){
 		parent::__construct();
@@ -131,11 +131,8 @@ class M_Pasien extends CI_Model{
 	}
 
 	function delete_pasien_by_id($id_pasien){
-		if(is_array($id_pasien)){
-			$this->db->where_in('id_pasien', $id_pasien);
-		}else{
-			$this->db->where('id_pasien', $id_pasien);
-		}
+		$this->db->where('id_pasien', $id_pasien);
+		$this->db->delete($this->table);
 	}
 
 	function delete_all_pasien(){

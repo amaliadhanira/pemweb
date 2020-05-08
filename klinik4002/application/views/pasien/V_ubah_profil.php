@@ -1,5 +1,6 @@
-<div class="container">
-	<div class="col-md-12">
+<div class="container mt-5">
+	<div class="row justify-content-md-center">
+	<div class="col col-md-8 p-3">
 		<h1>Ubah Profil</h1>
 		<?php if ($this->session->flashdata('info_msg') == 'error') { ?>
 			<div class="alert alert-danger" role="alert">
@@ -47,5 +48,6 @@
 			</div>
 			<button type="submit" class="btn btn-primary">Simpan</button>
 		</form>
+	</div>
 	</div>
 </div>

@@ -1,28 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_Farmasi extends CI_Model{
-	var $column_order = array(null, 'nama_apoteker', 'alamat', 'no_telp', null);
-	var $column_search = array('nama_apoteker', 'no_telp');
-	var $order = array('nama_apoteker' => 'asc');
-	var $table = 'apoteker';
+class M_Jumlah_Antrean extends CI_Model{
+
+	var $column_order = array(null, 'nama_dokter', 'nama_spesialisasi', 'jumlah_antrean');
+	var $column_search = array('nama_dokter', 'nama_spesialisasi');
+	var $order = array('nama_dokter' => 'asc');
+	var $table = 'antrean';
 
 	function __construct(){
 		parent::__construct();
 	}
 
-	function get_detail_apoteker(){
-		$this->db->select('*');
-		$this->db->from('farmasi');
-	}
-
-	function get_all(){
-		return $this->db->get('farmasi')->result_array();
-	}
-
-	function get_by_id($id_apoteker){
-		$this->db->where('id_apoteker', $id_apoteker);
-		return $this->db->get('farmasi')->row_array();
+	function get_jumlah(){
+		$this->db->select('nama_dokter, nama_spesialisasi, COUNT(antrean.id_dokter) as jumlah_antrean');
+		$this->db->group_by('antrean.id_dokter');
+		$this->db->from('antrean');
+		$this->db->join('dokter', 'dokter.id_dokter = antrean.id_dokter');
+		$this->db->join('spesialisasi', 'dokter.id_spesialisasi = spesialisasi.id_spesialisasi');
+		$this->db->where('tgl_periksa', date("Y-m-d"));
 	}
 
 	private function _get_datatables_query(){
@@ -30,7 +26,7 @@ class M_Farmasi extends CI_Model{
 		$post_search = $this->input->post('search');
 		$post_order = $this->input->post('order');
 
-		$this->get_detail_apoteker();
+		$this->get_jumlah();
 
 		$i = 0;
 
@@ -72,27 +68,9 @@ class M_Farmasi extends CI_Model{
 	}
 
 	function count_all(){
-		$this->get_detail_apoteker();
+		$this->get_jumlah();
 
 		return $this->db->count_all_results();
-	}
-
-	function new_farmasi($data_farmasi){
-		$this->db->insert($this->table, $data);
-	}
-
-	function edit_apoteker($id_apoteker, $data_farmasi){
-		$this->db->where('id_apoteker', $id_apoteker);
-		$this->db->update($this->table, $data_farmasi);
-	}
-
-	function delete_apoteker_by_id($id_apoteker){
-		$this->db->where('id_apoteker', $id_apoteker);
-		$this->db->delete($this->table);	
-	}
-
-	function delete_all_apoteker(){
-		$this->db->delete($this->table);
 	}
 }
 ?>

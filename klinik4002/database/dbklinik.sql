@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2020 at 09:24 AM
+-- Generation Time: Apr 25, 2020 at 03:43 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.1.15
 
@@ -60,7 +60,7 @@ CREATE TABLE `antrean` (
   `id_pasien` int(20) NOT NULL,
   `id_dokter` int(20) NOT NULL,
   `tgl_periksa` date NOT NULL,
-	`waktu_daftar` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `waktu_daftar` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -68,23 +68,13 @@ CREATE TABLE `antrean` (
 --
 
 INSERT INTO `antrean` (`no_antrean`, `id_pasien`, `id_dokter`, `tgl_periksa`, `waktu_daftar`) VALUES
-(1, 2000001, 1000002, '2020-04-02', '2020-04-23 14:23:51'),
-(2, 2000002, 1000001, '2020-03-12', '2020-04-23 14:23:31'),
-(3, 2000004, 1000000, '2020-04-03', '2020-04-23 14:23:46'),
-(4, 2000003, 1000003, '2020-03-28', '2020-04-23 14:23:46'),
-(5, 2000001, 1000000, '2020-06-09', '2020-04-23 14:23:46');
+(1, 2000001, 1000000, '2020-04-08', '2020-04-02 04:07:39'),
+(2, 2000001, 1000001, '2020-04-10', '2020-04-09 04:07:43'),
+(89, 2000001, 1000002, '2020-04-28', '2020-04-25 13:23:21'),
+(90, 2000001, 1000002, '2020-04-28', '2020-04-25 06:43:24'),
+(92, 2000001, 1000003, '2020-05-02', '2020-04-25 13:23:42');
 
 -- --------------------------------------------------------
-
-CREATE TABLE `spesialisasi` (
-  `id_spesialisasi` int(20) NOT NULL,
-  `nama_spesialisasi` varchar(50) NOT NULL
-);
-
-INSERT INTO `spesialisasi`(`id_spesialisasi`, `nama_spesialisasi`) VALUES
-(1, 'Penyakit Dalam'),
-(2, 'Orthodonti'),
-(3, 'Periodonsia');
 
 --
 -- Table structure for table `dokter`
@@ -94,7 +84,7 @@ CREATE TABLE `dokter` (
   `id_dokter` int(20) NOT NULL,
   `id_spesialisasi` int(20) NOT NULL,
   `nama_dokter` varchar(50) NOT NULL,
-  `jadwal` text,
+  `jadwal` text NOT NULL,
   `alamat` text,
   `no_telp` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -103,11 +93,11 @@ CREATE TABLE `dokter` (
 -- Dumping data for table `dokter`
 --
 
-INSERT INTO `dokter` (`id_dokter`, `id_spesialisasi`, `nama_dokter`, `jadwal`, `no_telp`) VALUES
+INSERT INTO `dokter` (`id_dokter`, `id_spesialisasi`, `nama_dokter`, `jadwal`, `alamat`, `no_telp`) VALUES
 (1000000, 1, 'Alda Putri Utami', 'Senin-Jumat 08:00-12:00', 'Jl. Nan Indah No.12', '081299229939'),
-(1000001, 1, 'Raymond Agung Nugroho', 'Jumat-Sabtu 08:00-14:00', 'Jl. Nanana No. 70', '081344773851'),
+(1000001, 1, 'Raymond Agung Nugroho', 'Senin-Jumat 13:00-17:00', 'Jl. Nanana No. 70', '081344773851'),
 (1000002, 2, 'Dhanira Dessy Amalia', 'Senin-Jumat 08:00-12:00', 'Jl. Tol Banyak Hambatan No. 14', '0856227382910'),
-(1000003, 3, 'Yulinda Lubis', 'Rabu-Kamis 08:00-14:00', 'Jl. Ku Bukan Jalanmu No. 11', '0855388219481');
+(1000003, 3, 'Yulinda Lubis', 'Senin-Jumat 13:00-17:00', 'Jl. Ku Bukan Jalanmu No. 11', '0855388219481');
 
 -- --------------------------------------------------------
 
@@ -202,7 +192,7 @@ INSERT INTO `obat` (`id_obat`, `nama_obat`, `produsen`, `manufacture_date`, `exp
 (104, 'Ibuprofen', 'Kimia Farma', '2019-11-11', '2022-11-11', 150, 20000),
 (105, 'Paracetamol', 'GSK', '2019-08-30', '2022-08-03', 117, 2400),
 (106, 'Betadine: Gargle', 'Mahakam Beta Farma', '2019-08-07', '2022-08-07', 180, 20000),
-(107, 'Chlorampenicol', 'Kalbe Farma', '2019-07-07', '0000-00-00', 113, 6200),
+(107, 'Chlorampenicol', 'Kalbe Farma', '2019-07-07', '2022-05-17', 113, 6200),
 (108, 'Panadol Menstrual', 'GSK', '2020-02-05', '2023-02-05', 90, 97000),
 (109, 'Tempra', 'Taisho Pharmaceutical Indonesia', '2020-01-18', '2023-01-18', 138, 54000),
 (110, 'Holisticare Ester C', 'Holisticare', '2020-01-09', '2023-01-09', 78, 60000);
@@ -230,10 +220,11 @@ CREATE TABLE `pasien` (
 
 INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `tanggal_lahir`, `username`, `alamat`, `no_telp`, `email`, `password`) VALUES
 (2000000, 'Stephanie Lee', '1997-12-14', 'steph_lee', 'Jl. Terusan Siguragura No. 1', '878555878', 'stephlee@example.com', '120b506e73fa9b09021f83919c1dc6ec'),
-(2000001, 'Ryan Weiss', '1997-01-27', 'weissryan', 'Jl. Suhadi No. 1', '838555519', 'ryan.weiss@example.com', '2a2535ce33b3c7913a8650d47202925a'),
+(2000001, 'Ryan Weiss', '1997-01-27', 'weissryan', 'Jl. Suhadi No. 1', '081233993933', 'ryan.weiss@example.com', '2a2535ce33b3c7913a8650d47202925a'),
 (2000002, 'Abel Laing', '1998-10-16', 'abelchyank', 'Jl. Rajawali No. 5', '8975555393', 'laing_abel@example.com', 'e3f5ac09a0053a569029c6b0eddbe3e5'),
 (2000003, 'Ricardo Milos', '1977-11-11', 'abang.ricardo', 'Jl. Keterusan No. 6', '812555358', 'ricardoganteng@example.com', '26e15f51ca014db995acd8b1b4111603'),
-(2000004, 'Alexis Britt', '1964-09-10', 'alxsbritt', 'Jl. Bombimbum No. 13', '853555712', 'alxbrtt@example.com', '25d55ad283aa400af464c76d713c07ad');
+(2000004, 'Alexis Britt', '1964-09-10', 'alxsbritt', 'Jl. Bombimbum No. 13', '853555712', 'alxbrtt@example.com', '25d55ad283aa400af464c76d713c07ad'),
+(2000006, 'Gracianna', '2004-02-12', 'gracccia', 'Bandung', '081129382291', 'graciaaa@mail.com', '49ffe4ca1f5039447f5c8e4ddf4b5dde');
 
 -- --------------------------------------------------------
 
@@ -247,7 +238,6 @@ CREATE TABLE `resep_obat` (
   `id_obat` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 --
 -- Dumping data for table `resep_obat`
 --
@@ -257,13 +247,25 @@ INSERT INTO `resep_obat` (`id_resep`, `id_laporan`, `id_obat`) VALUES
 (2, 2, 102),
 (3, 1, 104);
 
-/*CREATE TABLE IF NOT EXISTS `tokens` (
-  `id_token` int(11) NOT NULL AUTO_INCREMENT,
-  `token` varchar(255) NOT NULL,
-  `id_admin` int(11) NOT NULL,
-  `id_pasien` int(11) NOT NULL,
-  `created` date NOT NULL
-);*/
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `spesialisasi`
+--
+
+CREATE TABLE `spesialisasi` (
+  `id_spesialisasi` int(20) NOT NULL,
+  `nama_spesialisasi` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `spesialisasi`
+--
+
+INSERT INTO `spesialisasi` (`id_spesialisasi`, `nama_spesialisasi`) VALUES
+(1, 'Penyakit Dalam'),
+(2, 'Orthodonti'),
+(3, 'Periodonsia');
 
 --
 -- Indexes for dumped tables
@@ -285,16 +287,11 @@ ALTER TABLE `antrean`
   ADD KEY `id_pasien_daftar` (`id_pasien`);
 
 --
--- Indexes for table `spesialisasi`
---
-ALTER TABLE `spesialisasi`
-  ADD PRIMARY KEY (`id_spesialisasi`);
-
---
 -- Indexes for table `dokter`
 --
 ALTER TABLE `dokter`
-  ADD PRIMARY KEY (`id_dokter`);
+  ADD PRIMARY KEY (`id_dokter`),
+  ADD KEY `id_spesialisasi_dokter` (`id_spesialisasi`);
 
 --
 -- Indexes for table `farmasi`
@@ -337,6 +334,12 @@ ALTER TABLE `resep_obat`
   ADD KEY `id_obat_resep` (`id_obat`);
 
 --
+-- Indexes for table `spesialisasi`
+--
+ALTER TABLE `spesialisasi`
+  ADD PRIMARY KEY (`id_spesialisasi`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -350,11 +353,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `antrean`
 --
 ALTER TABLE `antrean`
-  MODIFY `no_antrean` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
-
-ALTER TABLE `spesialisasi`
-  MODIFY `id_spesialisasi` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `no_antrean` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `dokter`
@@ -390,13 +389,19 @@ ALTER TABLE `obat`
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
-  MODIFY `id_pasien` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2000005;
+  MODIFY `id_pasien` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2000007;
 
 --
 -- AUTO_INCREMENT for table `resep_obat`
 --
 ALTER TABLE `resep_obat`
   MODIFY `id_resep` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `spesialisasi`
+--
+ALTER TABLE `spesialisasi`
+  MODIFY `id_spesialisasi` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -408,6 +413,12 @@ ALTER TABLE `resep_obat`
 ALTER TABLE `antrean`
   ADD CONSTRAINT `id_dokter_daftar` FOREIGN KEY (`id_dokter`) REFERENCES `dokter` (`id_dokter`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `id_pasien_daftar` FOREIGN KEY (`id_pasien`) REFERENCES `pasien` (`id_pasien`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `dokter`
+--
+ALTER TABLE `dokter`
+  ADD CONSTRAINT `id_spesialisasi_dokter` FOREIGN KEY (`id_spesialisasi`) REFERENCES `spesialisasi` (`id_spesialisasi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `laporan_pemeriksaan`

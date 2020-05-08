@@ -3,26 +3,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Antrean extends CI_Model{
 
-	var $column_order = array(null, 'nama_dokter', 'nama_spesialisasi', 'jumlah_antrean');
-	var $column_search = array('nama_dokter', 'nama_spesialisasi');
-	var $order = array('nama_dokter' => 'asc');
+	var $column_order = array(null, 'nama_pasien', 'nama_dokter', 'nama_spesialisasi', 'tgl_periksa', 'waktu_daftar', null);
+	var $column_search = array('nama_dokter', 'nama_spesialisasi', 'tgl_periksa');
+	var $order = array('waktu_daftar' => 'asc');
 	var $table = 'antrean';
 
 	function __construct(){
 		parent::__construct();
 	}
 
-	function get_all(){
-		return $this->db->get('antrean')->result_array();
-	}
-
-	function get_jumlah(){
-		$this->db->select('nama_dokter, nama_spesialisasi, COUNT(antrean.id_dokter) as jumlah_antrean');
-		$this->db->group_by('antrean.id_dokter');
-		$this->db->from('antrean');
-		$this->db->join('dokter', 'dokter.id_dokter = antrean.id_dokter');
-		$this->db->join('spesialisasi', 'dokter.id_spesialisasi = spesialisasi.id_spesialisasi');
-		$this->db->where('tgl_periksa', date("Y-m-d"));
+	function get_antrean(){
+		$this->db->select('*');
+		$this->db->from('spesialisasi');
+		$this->db->join('dokter', 'dokter.id_spesialisasi = spesialisasi.id_spesialisasi');
+		$this->db->join('antrean', 'dokter.id_dokter = antrean.id_dokter');
+		$this->db->join('pasien', 'pasien.id_pasien = antrean.id_pasien');
 	}
 
 	private function _get_datatables_query(){
@@ -30,7 +25,7 @@ class M_Antrean extends CI_Model{
 		$post_search = $this->input->post('search');
 		$post_order = $this->input->post('order');
 
-		$this->get_jumlah();
+		$this->get_antrean();
 
 		$i = 0;
 
@@ -72,9 +67,30 @@ class M_Antrean extends CI_Model{
 	}
 
 	function count_all(){
-		$this->get_jumlah();
+		$this->get_antrean();
 
 		return $this->db->count_all_results();
+	}
+
+	function get_by_no($no_antrean){
+		$this->get_antrean();
+		$this->db->where('no_antrean', $no_antrean);
+
+		return $this->db->get()->row_array();
+	}
+
+	/*function add_antrean($data){
+		return $this->db->insert($this->table, $data);
+	}*/
+
+	function update_antrean($no_antrean, $data){
+		$this->db->where('no_antrean', $no_antrean);
+		return $this->db->update($this->table, $data);
+	}
+
+	function del_antrean($no_antrean){
+		$this->db->where('no_antrean', $no_antrean);
+		$this->db->delete($this->table);
 	}
 }
 ?>

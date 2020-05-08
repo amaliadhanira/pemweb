@@ -12,5 +12,5 @@
 <script src="<?= base_url('assets/js/dt_dokter.js') ?>"></script>
 </body>
 <footer class="footer text-center">
-	<span class="text-muted">&copy; 2020 Klinik 4002</span>
+	<span class="text-muted">&copy; 2020 Klinik Tong Pang</span>
 </footer>

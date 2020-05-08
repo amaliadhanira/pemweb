@@ -1,6 +1,32 @@
-<br>
-<br>
-<div class="breadcome-area">
+<div class="container-fluid mt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="gallery-slider" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="<?= base_url('assets/img/photos/hospital-1.jpg') ?>" class="d-block w-100" alt="Klinik Tong Pang">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="<?= base_url('assets/img/photos/hospital-2.jpg') ?>" class="d-block w-100" alt="Klinik Tong Pang">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="<?= base_url('assets/img/photos/hospital-3.jpg') ?>" class="d-block w-100" alt="Klinik Tong Pang">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#gallery-slider" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#gallery-slider" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="breadcome-area mt-3">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -23,7 +49,6 @@
         </div>
     </div>
 </div>
-
 <div class="analytics-sparkle-area">
     <div class="container-fluid">
         <div class="row">

@@ -1,5 +1,5 @@
-<div class="container">
-	<div class="col-md-12">
+<div class="container mt-5">
+	<div class="col col-md-12 p-3">
 		<h1>Laporan Pemeriksaan</h1>
 			<table class="table table-hover" id="table_laporan_pemeriksaan" style="width: 100%">
 				<thead>

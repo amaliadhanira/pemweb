@@ -1,11 +1,11 @@
 $(document).ready(function(){
 
-  /* JQUERY/AJAX DATATABLES ADMIN */
+  /* JQUERY/AJAX DATATABLES ANTREAN */
   var aksi;
   var table;
   var id_antrean;
 
-  //DATATABLES ADMIN
+  //DATATABLES ANTREAN
   table = $('#table_antrean').DataTable({
       "processing": true,
       "serverSide": true,
@@ -15,7 +15,7 @@ $(document).ready(function(){
       },
 
       "ajax": {
-          "url": "http://localhost/klinik4002/admin/antrean",
+          "url": "http://localhost/klinik4002/adminpage/data_antrean",
           "type": "POST",
           "dataType": "JSON"
       },
@@ -54,18 +54,18 @@ $(document).ready(function(){
     $('.help-block').empty();
 
     $.ajax({
-      url: "http://localhost/klinik4002/klinik/edit_antrean_saya/" + no_antrean,
+      url: "http://localhost/klinik4002/adminpage/edit_antrean/" + no_antrean,
       type: "GET",
       dataType: "JSON",
       success: function(data){
         $('[name="no_antrean"]').val(data.no_antrean);
         $('[name="nama_pasien"]').val(data.nama_pasien);
         $('[name="id_pasien"]').val(data.id_pasien);
-        $('[name="dokter"]').val(data.id_dokter);
+        $('[name="nama_dokter"]').val(data.nama_dokter);
         $('[name="id_dokter"]').val(data.id_dokter);
+        $('[name="nama_spesialisasi"]').val(data.nama_spesialisasi);
         $('[name="tgl_periksa"]').val(data.tgl_periksa);
-        $('[name="dokter"]').prop("disabled", true);
-        $('[name="dokter"]').addClass("disabled");
+        $('[name="waktu_daftar"]').val(data.waktu_daftar);
         $('#modal_antrean').modal('show');
         $('#modal_antrean_label').text('Ubah Tanggal Antrean');
       },
@@ -76,15 +76,15 @@ $(document).ready(function(){
   });
 
    //ON CLICK BUTTON SIMPAN (MODAL)
-  $('#btn_simpan').on('click', function(){
+  $('#btn_simpan_antrean').on('click', function(){
 
-    $('#btn_simpan').text('Menyimpan...');
-    $('#btn_simpan').prop('disabled', true);
+    $('#btn_simpan_antrean').text('Menyimpan...');
+    $('#btn_simpan_antrean').prop('disabled', true);
 
     var url;
 
-    if (aksi == 'add') {
-      url = "http://localhost/klinik4002/admin/antrean/edit_antrean";
+    if (aksi == 'edit') {
+      url = "http://localhost/klinik4002/adminpage/ubah_antrean";
     } 
 
     $.ajax({
@@ -97,33 +97,30 @@ $(document).ready(function(){
 
         if (data.success){
           $('#modal_antrean').modal('hide');
-          $id_dokter = $("#dokter option:eq(0)").val();
-          $('[name="id_dokter"]').val($id_dokter);
           reload_table();
         }
 
-        $('#btn_simpan').text('Simpan');
-        $('#btn_simpan').prop('disabled', false);
+        $('#btn_simpan_antrean').text('Simpan');
+        $('#btn_simpan_antrean').prop('disabled', false);
       },
       error: function(jqXHR, textStatus, errorThrown){
 
         alert('Terjadi error dalam pendaftaran atau pengubahan tanggal antrean');
 
-        $('#btn_simpan').text('Simpan');
-        $('#btn_simpan').prop('disabled', false);
+        $('#btn_simpan_antrean').text('Simpan');
+        $('#btn_simpan_antrean').prop('disabled', false);
       }
     });
   });
 
-  //ON CLICK BUTTON BATALKAN
-  $('tbody').on('click', '#batalkan_antrean', function(){
+  //ON CLICK BUTTON HAPUS
+  $('tbody').on('click', '#hapus_antrean', function(){
     no_antrean = $(this).data("no_antrean");
 
-    if (confirm('Apakah Anda yakin ingin membatalkan antrean?')){
+    if (confirm('Apakah Anda yakin ingin menghapus antrean?')){
       $.ajax({
-        url: "http://localhost/klinik4002/klinik/batalkan_antrean/" + no_antrean,
+        url: "http://localhost/klinik4002/adminpage/hapus_antrean/" + no_antrean,
         type: "POST",
-        data: $('#form_antrean').serialize(),
         dataType: "JSON",
         success: function(data){
           $('#modal_antrean').modal('hide');
@@ -136,6 +133,6 @@ $(document).ready(function(){
     }
   });
 
-  /* END OF JQUERY/AJAX DATATABLES ANTREAN SAYA */
+  /* END OF JQUERY/AJAX DATATABLES ANTREAN */
 
 })

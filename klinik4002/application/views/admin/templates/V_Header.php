@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" type="image/x-icon" href="<?= base_url('assets/img/tp-logo-png.png') ?>">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="<?= base_url('assets/css/font-awesome.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/owl.carousel.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/owl.theme.css') ?>">
@@ -31,9 +31,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/datepicker_style.css') ?>" type="text/css">
-    <script src="<?= base_url('assets/js/vendor/modernizr-2.8.3.min.js') ?>"></script>
 </head>
-<body>
+<body class="d-flex flex-column h-100">
     <!-- Left Menu Area -->
 	<div class="left-sidebar-pro">
         <nav id="sidebar" class="">
@@ -59,13 +58,13 @@
                             <a href="<?= site_url('adminpage/dokter') ?>" aria-expanded="false"><span class="mini-click-non">Dokter</span></a>
                         </li>
                         <li>
-                            <a href="<?= site_url('adminpage/dokter') ?>" aria-expanded="false"><span class="mini-click-non">Lab</span></a>
+                            <a href="<?= site_url('adminpage/lab') ?>" aria-expanded="false"><span class="mini-click-non">Lab</span></a>
                         </li>
                         <li>
-                            <a href="<?= site_url('adminpage/dokter') ?>" aria-expanded="false"><span class="mini-click-non">Farmasi</span></a>
+                            <a href="<?= site_url('adminpage/farmasi') ?>" aria-expanded="false"><span class="mini-click-non">Farmasi</span></a>
                         </li>
                         <li>
-                            <a href="<?= site_url('adminpage/laporan_pasien') ?>" aria-expanded="false"><span class="mini-click-non">Laporan Pemeriksaan<br>Pasien</span></a>
+                            <a href="<?= site_url('adminpage/laporan') ?>" aria-expanded="false"><span class="mini-click-non">Laporan Pemeriksaan<br>Pasien</span></a>
                         </li>
                     </ul>
                     <span class="navbar-text">
@@ -81,7 +80,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="logo-pro">
-                        <a href=""><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                        <a href="<?= site_url('adminpage') ?>"><img class="main-logo" src="<?php echo base_url(); ?>assets/img/tp-logo-png.png" width="50" alt="" /></a>
                     </div>
                 </div>
             </div>
@@ -102,37 +101,23 @@
                                     </div>
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
-                                            <ul class="nav navbar-nav mai-top-nav">
-                                               
-                                               
-                                                  
-                                                </li>
-                                                
-                                               
+                                            <ul class="nav navbar-nav mai-top-nav"></ul>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                         <div class="header-right-info">
                                             <ul class="nav navbar-nav mai-top-nav header-right-menu">
-                                                <li class="">
-                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="" aria-hidden="true"></i><span class=""></span></a>
-                                                    <div role="menu" class="author-message-top dropdown-menu animated zoomIn">
-                                                        <div class="">
-                                                            <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                <li class="nav-item">
-                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                            <img src="<?= base_url('assets/img/admin.jpg') ?>" alt="" />
-                                                            <span class="admin-name">Halo, <?= $this->session->username; ?></span>
-                                                            <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
-                                                        </a>
-                                                    <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
-                                                       
-                                                        <li><a href="<?= base_url('login') ?>"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
-                                                        </li>
-                                                    </ul>
+                                                <li class="nav-item" style="cursor:pointer">
+                                                    <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link" role="button">
+                                                        <img src="<?= base_url('assets/img/admin.jpg') ?>" alt="" />
+                                                        <span class="admin-name">Halo, <?= $this->session->username; ?></span>
+                                                        <i class="fa fa-angle-down edu-icon edu-down-arrow p-1"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu">
+                                                        <a href="<?= base_url('login') ?>" class="dropdown-item"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
+                                                    </div>
                                                 </li>
-                                                <li class="n"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class=""></i></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -142,5 +127,6 @@
                     </div>
                 </div>
             </div>
+            <main role="main" class="flex-shrink-0">
 
   

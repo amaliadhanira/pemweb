@@ -1,0 +1,14 @@
+admin:
+superadmin - imsosuper
+kmccray - kaysonspass1
+rdodson - dodsspass2
+moshehs - hasitpass
+kathleencass - 12345678
+
+pasien:
+steph_lee - pass10001
+weissryan - hey123456
+abelchyank - iamlaings2
+abang.ricardo - 111177
+alxsbritt - 12345678
+gracccia - hey123
