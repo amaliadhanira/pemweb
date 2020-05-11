@@ -32,20 +32,14 @@ $(document).ready(function(){
     }
 
  //ON CLICK BUTTON TAMBAH LAB
-   $('#tambah_lab').on('click', function(){
-      aksi = 'add';
-        $('#form_admin')[0].reset();
-        $('.form-group').removeClass('has-error');
-        $('.help-block').empty();
-        $('[name="nama_examiner"]').prop("disabled", false);
-        $('[name="nama_examiner"]').removeClass("disabled");
-        $('[name="alamat"]').prop("disabled", false);
-        $('[name="alamat"]').removeClass("disabled");
-        $('[name="no_telp"]').prop("disabled", false);
-        $('[name="no_telp"]').removeClass("disabled");
-        $('#modal_lab').modal('show');
-        $('#modal_lab_label').text('Tambah Apoteker');
-    });
+  $('#tambah_lab').on('click', function(){
+    aksi = 'add';
+    $('#form_lab')[0].reset();
+    $('.form-group').removeClass('has-error');
+    $('.help-block').empty();
+    $('#modal_lab').modal('show');
+    $('#modal_lab_label').text('Tambah Apoteker');
+  });
 
   //ON CLICK BUTTON UBAH ADMIN
   $('tbody').on('click', '#ubah_lab', function(){
@@ -64,10 +58,6 @@ $(document).ready(function(){
         $('[name="nama_examiner"]').val(data.nama_examiner);
         $('[name="alamat"]').val(data.alamat);
         $('[name="no_telp"]').val(data.no_telp);
-        $('[name="alamat"]').prop("disabled", true);
-        $('[name="alamat"]').addClass("disabled");
-        $('[name="no_telp"]').prop("disabled", true);
-        $('[name="no_telp"]').addClass("disabled");
         $('#modal_lab').modal('show');
         $('#modal_lab_label').text('Edit Laboratorium');
       },
@@ -119,9 +109,9 @@ $(document).ready(function(){
 
   //ON CLICK BUTTON HAPUS
   $('tbody').on('click', '#hapus_lab', function(){
-    id_admin = $(this).data("id_admin");
+    id_examiner = $(this).data("id_examiner");
 
-    if (confirm('Apakah Anda yakin ingin menghapus admin?')){
+    if (confirm('Apakah Anda yakin ingin menghapus analis?')){
       $.ajax({
         url: "http://localhost/klinik4002/adminpage/hapus_lab/" + id_examiner,
         type: "POST",

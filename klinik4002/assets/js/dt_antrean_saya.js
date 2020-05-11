@@ -153,7 +153,6 @@ $(document).ready(function(){
       $.ajax({
         url: "http://localhost/klinik4002/klinik/batalkan_antrean/" + no_antrean,
         type: "POST",
-        data: $('#form_antrean').serialize(),
         dataType: "JSON",
         success: function(data){
           $('#modal_antrean').modal('hide');

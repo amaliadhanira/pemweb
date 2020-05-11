@@ -39,16 +39,8 @@ $(document).ready(function(){
         $('.help-block').empty();
         $('[name="nama_admin"]').prop("disabled", false);
         $('[name="nama_admin"]').removeClass("disabled");
-        $('[name="email"]').prop("disabled", false);
-        $('[name="email"]').removeClass("disabled");
-        $('[name="alamat"]').prop("disabled", false);
-        $('[name="alamat"]').removeClass("disabled");
-        $('[name="no_telp"]').prop("disabled", false);
-        $('[name="no_telp"]').removeClass("disabled");
         $('[name="username"]').prop("disabled", false);
         $('[name="username"]').removeClass("disabled");
-        $('[name="password"]').prop("disabled", false);
-        $('[name="password"]').removeClass("disabled");
         $('#modal_admin').modal('show');
         $('#modal_admin_label').text('Tambah Admin');
     });
@@ -72,13 +64,10 @@ $(document).ready(function(){
         $('[name="alamat"]').val(data.alamat);
         $('[name="username"]').val(data.username);
         $('[name="no_telp"]').val(data.no_telp);
-        $('[name="password"]').val(data.password);
         $('[name="nama_admin"]').prop("disabled", true);
         $('[name="nama_admin"]').addClass("disabled");
         $('[name="username"]').prop("disabled", true);
         $('[name="username"]').addClass("disabled");
-        $('[name="password"]').prop("disabled", true);
-        $('[name="password"]').addClass("disabled");
         $('#modal_admin').modal('show');
         $('#modal_admin_label').text('Edit Admin');
       },

@@ -22,7 +22,7 @@ $(document).ready(function(){
       },
 
       "columnDefs": [{
-          "targets": [0, -1, -2, -4],
+          "targets": [0, 1, -1, -2],
           "orderable": false,
       },],
     });
@@ -30,16 +30,6 @@ $(document).ready(function(){
   function reload_table(){
     table.ajax.reload(null, false);
   }
-
-//DATEPICKER ANTREAN SAYA
-  $('.datepicker').datepicker({
-    autoclose: true,
-    format: "yyyy-mm-dd",
-    orientation: "top auto",
-    startDate: "+1d",
-    endDate: "+1w",
-    defaultDate: "+1d",
-  });
 
   //ON CLICK BUTTON RINCIAN LAPORAN
   $('tbody').on('click', '#rincian_laporan', function(){

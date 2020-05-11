@@ -22,7 +22,7 @@ $(document).ready(function(){
       },
 
       "columnDefs": [{
-          "targets": [0, -1, -2, -4],
+          "targets": [0, -1, -2, -3],
           "orderable": false,
       },],
     });
@@ -32,26 +32,20 @@ $(document).ready(function(){
   }
 
    //ON CLICK BUTTON TAMBAH LAB
-   $('#tambah_farmasi').on('click', function(){
-      aksi = 'add';
-        $('#form_admin')[0].reset();
-        $('.form-group').removeClass('has-error');
-        $('.help-block').empty();
-        $('[name="nama_apoteker"]').prop("disabled", false);
-        $('[name="nama_apoteker"]').removeClass("disabled");
-        $('[name="alamat"]').prop("disabled", false);
-        $('[name="alamat"]').removeClass("disabled");
-        $('[name="no_telp"]').prop("disabled", false);
-        $('[name="no_telp"]').removeClass("disabled");
-        $('#modal_farmasi').modal('show');
-        $('#modal_farmasi_label').text('Tambah Apoteker');
-    });
+  $('#tambah_farmasi').on('click', function(){
+    aksi = 'add';
+    $('#form_farmasi')[0].reset();
+    $('.form-group').removeClass('has-error');
+    $('.help-block').empty();
+    $('#modal_farmasi').modal('show');
+    $('#modal_farmasi_label').text('Tambah Apoteker');
+  });
 
   //ON CLICK BUTTON UBAH ADMIN
   $('tbody').on('click', '#ubah_farmasi', function(){
     id_apoteker = $(this).data("id_apoteker");
     aksi = 'edit';
-    $('#form_lab')[0].reset();
+    $('#form_farmasi')[0].reset();
     $('.form-group').removeClass('has-error');
     $('.help-block').empty();
 
@@ -64,10 +58,6 @@ $(document).ready(function(){
         $('[name="nama_apoteker"]').val(data.nama_apoteker);
         $('[name="alamat"]').val(data.alamat);
         $('[name="no_telp"]').val(data.no_telp);
-        $('[name="alamat"]').prop("disabled", true);
-        $('[name="alamat"]').addClass("disabled");
-        $('[name="no_telp"]').prop("disabled", true);
-        $('[name="no_telp"]').addClass("disabled");
         $('#modal_farmasi').modal('show');
         $('#modal_farmasi_label').text('Edit Farmasi');
       },
@@ -119,11 +109,11 @@ $(document).ready(function(){
 
   //ON CLICK BUTTON HAPUS
   $('tbody').on('click', '#hapus_farmasi', function(){
-    id_admin = $(this).data("id_admin");
+    id_apoteker = $(this).data("id_apoteker");
 
     if (confirm('Apakah Anda yakin ingin menghapus apoteker?')){
       $.ajax({
-        url: "http://localhost/klinik4002/adminpage/hapus_apoteker/" + id_examiner,
+        url: "http://localhost/klinik4002/adminpage/hapus_apoteker/" + id_apoteker,
         type: "POST",
         dataType: "JSON",
         success: function(data){

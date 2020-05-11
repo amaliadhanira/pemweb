@@ -33,21 +33,15 @@ $(document).ready(function(){
   	}
 
     //ON CLICK BUTTON TAMBAH DOKTER
- $('#tambah_dokter').on('click', function(){
+  $('#tambah_dokter').on('click', function(){
     aksi = 'add';
         $('#form_dokter')[0].reset();
         $('.form-group').removeClass('has-error');
         $('.help-block').empty();
         $('[name="nama_dokter"]').prop("disabled", false);
         $('[name="nama_dokter"]').removeClass("disabled");
-        $('[name="nama_spesialisasi"]').prop("disabled", false);
-        $('[name="nama_spesialisasi"]').removeClass("disabled");
-        $('[name="jadwal"]').prop("disabled", false);
-        $('[name="jadwal"]').removeClass("disabled");
-        $('[name="no_telp"]').prop("disabled", false);
-        $('[name="no_telp"]').removeClass("disabled");
-        $('[name="alamat"]').prop("disabled", false);
-        $('[name="alamat"]').removeClass("disabled");
+        $('[name="spesialisasi"]').prop("disabled", false);
+        $('[name="spesialisasi"]').removeClass("disabled");
         $('#modal_dokter').modal('show');
         $('#modal_dokter_label').text('Tambah Dokter');
   });
@@ -69,20 +63,14 @@ $(document).ready(function(){
         $('[name="id_dokter"]').val(data.id_dokter);
         $('[name="id_spesialisasi"]').val(data.id_spesialisasi);
         $('[name="nama_dokter"]').val(data.nama_dokter);
-        $('[name="nama_spesialisasi"]').val(data.nama_spesialisasi);
+        $('[name="spesialisasi"]').val(data.id_spesialisasi);
         $('[name="jadwal"]').val(data.jadwal);
         $('[name="alamat"]').val(data.alamat);
         $('[name="no_telp"]').val(data.no_telp);
         $('[name="nama_dokter"]').prop("disabled", true);
         $('[name="nama_dokter"]').addClass("disabled");
-        $('[name="nama_spesialisasi"]').prop("disabled", true);
-        $('[name="nama_spesialisasi"]').addClass("disabled");
-        $('[name="jadwal"]').prop("disabled", false);
-        $('[name="jadwal"]').removeClass("disabled");
-        $('[name="no_telp"]').prop("disabled", false);
-        $('[name="no_telp"]').removeClass("disabled");
-        $('[name="alamat"]').prop("disabled", false);
-        $('[name="alamat")').removeClass("disabled");
+        $('[name="spesialisasi"]').prop("disabled", true);
+        $('[name="spesialisasi"]').addClass("disabled");
         $('#modal_dokter').modal('show');
         $('#modal_dokter_label').text('Ubah dokter');
       },
@@ -92,7 +80,7 @@ $(document).ready(function(){
     });
   });
 
- //SET ID DOKTER WHEN DOKTER OPTION SELECTED
+ //SET ID SPESIALISASI WHEN SPESIALISASI OPTION SELECTED
   $('#spesialisasi').on('change', function(){
     $id_spesialisasi = $("#spesialisasi option:selected").val();
     $('[name="id_spesialisasi"]').val($id_spesialisasi);
@@ -110,7 +98,7 @@ $(document).ready(function(){
     if (aksi == 'add') {
       url = "http://localhost/klinik4002/adminpage/tambah_dokter";
     } else {
-      url = "http://localhost/klinik4002/adminpage/edit_dokter";
+      url = "http://localhost/klinik4002/adminpage/ubah_dokter";
     }
 
     $.ajax({
