@@ -31,31 +31,6 @@ $(document).ready(function(){
     table.ajax.reload(null, false);
   }
 
-  //ON CLICK BUTTON RINCIAN LAPORAN
-  $('tbody').on('click', '#rincian_laporan', function(){
-
-    id_laporan = $(this).data("id_laporan");
-    aksi = 'rincian';
-
-    $.ajax({
-      url: "http://localhost/klinik4002/adminpage/click_rincian/" + id_laporan,
-      type: "GET",
-      dataType: "JSON",
-      success: function(data){
-        $('#obat').empty();
-        $('#nama_dokter').text(data[0].nama_dokter);
-        $('#spesialis').text(data[0].nama_spesialisasi);
-        $('#tgl_periksa').text(data[0].tgl_periksa);
-        $('#diagnosa').text(data[0].diagnosa);
-        $('#resep_obat').text(data[0].resep_obat);
-        $('#modal_rincian_laporan').modal('show');
-      },
-      error: function (jqXHR, textStatus, errorThrown){
-        alert('Terjadi error dalam pengambilan data');
-      }
-    });
-  });
-
 //ON CLICK BUTTON BUAT LAPORAN
  $('#buat_laporan').on('click', function(){
       aksi = 'add';
