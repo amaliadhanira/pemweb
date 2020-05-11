@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Laporan_Admin extends CI_Model{
 
-	var $column_order = array(null, 'nama_dokter', 'nama_spesialisasi', 'tgl_periksa', 'diagnosa', null);
-	var $column_search = array('nama_dokter', 'nama_spesialisasi', 'tgl_periksa', 'diagnosa');
+	var $column_order = array(null, 'no_antrean', 'nama_pasien', 'nama_dokter', 'nama_spesialisasi', 'tgl_periksa', 'diagnosa', null);
+	var $column_search = array('nama_pasien', 'nama_dokter', 'nama_spesialisasi', 'tgl_periksa', 'diagnosa');
 	var $order = array('tgl_periksa' => 'desc');
 	var $table = 'laporan_pemeriksaan';
 
@@ -26,7 +26,7 @@ class M_Laporan_Admin extends CI_Model{
 		$post_search = $this->input->post('search');
 		$post_order = $this->input->post('order');
 
-		$this->get_laporan($this->session->username);
+		$this->get_laporan();
 
 		$i = 0;
 

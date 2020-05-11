@@ -5,7 +5,7 @@ class M_Farmasi extends CI_Model{
 	var $column_order = array(null, 'nama_apoteker', 'alamat', 'no_telp', null);
 	var $column_search = array('nama_apoteker', 'no_telp');
 	var $order = array('nama_apoteker' => 'asc');
-	var $table = 'apoteker';
+	var $table = 'farmasi';
 
 	function __construct(){
 		parent::__construct();
@@ -17,12 +17,12 @@ class M_Farmasi extends CI_Model{
 	}
 
 	function get_all(){
-		return $this->db->get('farmasi')->result_array();
+		return $this->db->get($this->table)->result_array();
 	}
 
 	function get_by_id($id_apoteker){
 		$this->db->where('id_apoteker', $id_apoteker);
-		return $this->db->get('farmasi')->row_array();
+		return $this->db->get($this->table)->row_array();
 	}
 
 	private function _get_datatables_query(){
@@ -77,18 +77,18 @@ class M_Farmasi extends CI_Model{
 		return $this->db->count_all_results();
 	}
 
-	function new_farmasi($data_farmasi){
-		$this->db->insert($this->table, $data);
+	function add_apoteker($data_apoteker){
+		return $this->db->insert($this->table, $data_apoteker);
 	}
 
-	function edit_apoteker($id_apoteker, $data_farmasi){
+	function update_apoteker($id_apoteker, $data_apoteker){
 		$this->db->where('id_apoteker', $id_apoteker);
-		$this->db->update($this->table, $data_farmasi);
+		return $this->db->update($this->table, $data_apoteker);
 	}
 
 	function delete_apoteker_by_id($id_apoteker){
 		$this->db->where('id_apoteker', $id_apoteker);
-		$this->db->delete($this->table);	
+		$this->db->delete($this->table);
 	}
 
 	function delete_all_apoteker(){

@@ -22,9 +22,8 @@ class M_Lab extends CI_Model{
 	}
 
 	function get_by_id($id_examiner){
-		$this->get_lab();
 		$this->db->where('id_examiner', $id_examiner);
-		return $this->db->get()->row_array();
+		return $this->db->get($this->table)->row_array();
 	}
 
 	private function _get_datatables_query(){

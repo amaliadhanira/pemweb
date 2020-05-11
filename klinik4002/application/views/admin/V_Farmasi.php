@@ -1,13 +1,13 @@
 <div class="container mt-5">
 	<div class="col col-md-12 p-3">
-		<h1>Data apoteker</h1>
+		<h1>Data Apoteker</h1>
 		<?= validation_errors('<div class="error alert alert-danger" role="alert">', '</div>') ?>
-		<div class="float-left"><button class="btn btn-sm btn-primary" id="tambah_farmasi">Tambah apoteker</button></div>
+		<div class="float-left"><button class="btn btn-sm btn-primary" id="tambah_farmasi">Tambah Apoteker</button></div>
 			<table class="table table-hover" id="table_farmasi" style="width: 100%">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
-						<th scope="col">Nama apoteker</th>
+						<th scope="col">Nama Apoteker</th>
 						<th scope="col">Alamat</th>
 						<th scope="col">Nomor Telepon</th>
 						<th scope="col">Aksi</th>

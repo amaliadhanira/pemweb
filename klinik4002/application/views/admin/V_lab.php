@@ -19,7 +19,7 @@
 	</div>
 </div>
 
-<!-- MODAL TAMBAH / UBAH ADMIN -->
+<!-- MODAL TAMBAH / UBAH ANALIS -->
 <div class="modal fade" id="modal_lab" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -31,7 +31,7 @@
 			</div>
 			<div class="modal-body form">
 				<form action="" id="form_lab" class="form-horizontal">
-					<input type="hidden" name="id_admin" value="">
+					<input type="hidden" name="id_examiner" value="">
 					<div class="form-body">
 						<div class="form-group">
 							<label for="nama_examiner" class="col-form-label">Nama Analis:</label>

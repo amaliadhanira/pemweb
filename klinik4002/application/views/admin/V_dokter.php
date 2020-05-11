@@ -2,7 +2,8 @@
     <div class="col col-md-12 p-3">
         <h1>Data Dokter</h1>
         <?= validation_errors('<div class="error alert alert-danger" role="alert">', '</div>') ?>
-        <div class="float-left"><button class="btn btn-sm btn-primary" id="tambah_dokter">Tambah Dokter</button></div>
+        <div class="float-left p-1"><button class="btn btn-sm btn-primary" id="tambah_dokter">Tambah Dokter</button></div>
+        <div class="float-left p-1"><button class="btn btn-sm btn-primary" id="kelola_spesialisasi">Kelola Spesialisasi</button></div>
             <table class="table table-hover" id="table_dokter" style="width: 100%">
                 <thead>
                     <tr>
@@ -21,7 +22,7 @@
     </div>
 </div>
 
-<!-- MODAL TAMBAH / UBAH ADMIN -->
+<!-- MODAL TAMBAH / UBAH DOKTER -->
 <div class="modal fade" id="modal_dokter" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -33,7 +34,7 @@
             </div>
             <div class="modal-body form">
                 <form action="" id="form_dokter" class="form-horizontal">
-                    <input type="hidden" name="id_admin" value="">
+                    <input type="hidden" name="id_dokter" value="">
                     <div class="form-body">
                         <div class="form-group">
                             <label for="nama_dokter" class="col-form-label">Nama Dokter:</label>
@@ -42,14 +43,13 @@
                         </div>
                         <div class="form-group">
                             <label for="no_telp" class="col-form-label">Spesialis:</label>
-                            <select name="dokter" id="dokter" class="form-control">
-                                <?php foreach ($dokter as $dok) { ?>
-                                    <option value="<?= $dok['id_spesialisasi'] ?>"><?= $dok['nama_spesialisasi'] ?></option>
+                            <select name="spesialisasi" id="spesialisasi" class="form-control">
+                                <?php foreach ($spesialisasi as $spe) { ?>
+                                    <option value="<?= $spe['id_spesialisasi'] ?>"><?= $spe['nama_spesialisasi'] ?></option>
                                 <?php 
-                                $val_id_dok = $dok['id_dokter'];
                             } ?>
                             </select>
-                            <input type="hidden" name="id_dokter" value="">
+                            <input type="hidden" name="id_spesialisasi" value="">
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">

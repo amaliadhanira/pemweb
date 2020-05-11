@@ -44,7 +44,7 @@
 								<?php foreach ($dokter as $dok) { ?>
 									<option value="<?= $dok['id_dokter'] ?>"><?= $dok['nama_dokter']. ' - ' .$dok['nama_spesialisasi'] ?></option>
 								<?php 
-								$val_id_dok = $dok['id_dokter'];
+								//$val_id_dok = $dok['id_dokter'];
 							} ?>
 							</select>
 							<input type="hidden" name="id_dokter" value="">

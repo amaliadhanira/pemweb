@@ -25,7 +25,7 @@ class M_Dokter extends CI_Model{
 
 	function get_by_id($id_dokter){
 		$this->db->where('id_dokter', $id_dokter);
-		return $this->db->get('dokter')->row_array();
+		return $this->db->get($this->table)->row_array();
 	}
 	
 	/* FUNCTION FOR DATATABLE AJAX */
@@ -82,44 +82,11 @@ class M_Dokter extends CI_Model{
 		return $this->db->count_all_results();
 	}
 
-	/* END OF FUNCTION FOR DATATABLE AJAX */
-
-
-	/*function cari_id($id_dokter, $page = 1){
-		
-		$this->db->limit(10, ($page-1) * 10);
-		$this->db->select('(SELECT nama_spesialisasi FROM spesialisasi WHERE id_dokter = dokter.id_spesialisasi LIMIT 1) as spesialisasi, id_dokter, nama_dokter', FALSE);
-		$this->db->where('id_dokter', $id_dokter);
-		$query = $this->db->get('dokter');
-		
-		if($query->num_rows() > 0){
-			return $query->result_array();
-		}else{
-			return NULL;
-		}
-	}*/
-
 	function dokter_baru($data_dokter){
-		/*$data = array(
-			'id_dokter' => $data_dokter['id_dokter'],
-			'nama_dokter' => $data_dokter['nama_dokter'],
-			'nama_spesialisasi' => $data_dokter['nama_spesialisasi'],
-			'alamat' => $data_dokter['alamat'],
-			'no_telp' => $data_dokter['no_telp']
-		);*/
-
-		return $this->db->insert($this->table, $data);
+		return $this->db->insert($this->table, $data_dokter);
 	}
 
 	function edit_dokter($id_dokter, $data_dokter){
-		/*$data = array(
-			'id_dokter' => $data_dokter['id_dokter'],
-			'nama_dokter' => $data_dokter['nama_dokter'],
-			'nama_spesialisasi' => $data_dokter['nama_spesialisasi'],
-			'alamat' => $data_dokter['alamat'],
-			'no_telp' => $data_dokter['no_telp']
-		);*/
-
 		$this->db->where('id_dokter', $id_dokter);
 		return $this->db->update($this->table, $data_dokter);
 	}
@@ -129,11 +96,8 @@ class M_Dokter extends CI_Model{
 	}
 
 	function delete_dokter_by_id($id_dokter){
-		if(is_array($id_dokter)){
-			$this->db->where_in('id_dokter', $id_dokter);
-		}else{
-			$this->db->where('id_dokter', $id_dokter);
-		}
+		$this->db->where('id_dokter', $id_dokter);
+		$this->db->delete($this->table);
 	}
 
 	function delete_all_dokter(){
