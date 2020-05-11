@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Laporan_Admin extends CI_Model{
 
-	var $column_order = array(null, 'no_antrean', 'nama_pasien', 'nama_dokter', 'nama_spesialisasi', 'tgl_periksa', 'diagnosa', null);
-	var $column_search = array('nama_pasien', 'nama_dokter', 'nama_spesialisasi', 'tgl_periksa', 'diagnosa');
-	var $order = array('tgl_periksa' => 'desc');
+	var $column_order = array(null, 'no_antrean', 'nama_pasien', 'nama_dokter', 'nama_spesialisasi', 'tgl_periksa', null);
+	var $column_search = array('no_antrean', 'nama_pasien', 'nama_dokter', 'nama_spesialisasi', 'tgl_periksa');
+	var $order = array('no_antrean' => 'asc');
 	var $table = 'laporan_pemeriksaan';
 
 	function __construct(){
@@ -87,24 +87,6 @@ class M_Laporan_Admin extends CI_Model{
 		$this->db->where('id_laporan', $id_laporan);
 
 		return $this->db->get()->row_array();
-	}
-
-	function buat_resep($data){
-		$this->get_laporan();
-		$this->db->join('resep_obat', 'resep_obat.id_laporan = laporan_pemeriksaan.id_laporan');
-		$this->db->join('obat', 'resep_obat.id_obat = obat.id_obat');
-		$this->db->where('resep_obat.id_laporan', $id_laporan);
-
-		return $this->db->insert($this->table, $data);
-	}
-
-	function get_by_id_join_resep($id_laporan){
-		$this->get_laporan();
-		$this->db->join('resep_obat', 'resep_obat.id_laporan = laporan_pemeriksaan.id_laporan');
-		$this->db->join('obat', 'resep_obat.id_obat = obat.id_obat');
-		$this->db->where('resep_obat.id_laporan', $id_laporan);
-
-		return $this->db->get()->result_array();
 	}
 
 	function delete_laporan($id_laporan){

@@ -81,14 +81,6 @@ class M_Laporan_Pemeriksaan extends CI_Model{
 		return $this->db->get()->row_array();
 	}
 
-	function get_by_id_join_resep($id_laporan){
-		$this->get_my_laporan($this->session->username);
-		$this->db->join('resep_obat', 'resep_obat.id_laporan = laporan_pemeriksaan.id_laporan');
-		$this->db->join('obat', 'resep_obat.id_obat = obat.id_obat');
-		$this->db->where('resep_obat.id_laporan', $id_laporan);
-
-		return $this->db->get()->result_array();
-	}
 /*
 	function add_antrean($data){
 		return $this->db->insert($this->table, $data);

@@ -7,12 +7,10 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">No. Antrean</th>
                         <th scope="col">Nama Pasien</th>
                         <th scope="col">Nama Dokter</th>
                         <th scope="col">Spesialis</th>
                         <th scope="col">Tanggal Periksa</th>
-                        <th scope="col">Diagnosa</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -22,63 +20,12 @@
     </div>
 </div>
 
-<!-- MODAL RINCIAN -->
-<div class="modal fade" id="modal_rincian_laporan" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modal_laporan_label">Rincian Laporan Pemeriksaan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table class="table">
-                    <tr>
-                        <th scope="row" style="width: 50%">No. Antrean:</th>
-                        <td id="no_antrean"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row" style="width: 50%">Nama Pasien:</th>
-                        <td id="nama_pasien"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row" style="width: 50%">Nama Dokter:</th>
-                        <td id="nama_dokter"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Spesialis:</th>
-                        <td id="spesialis"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Tanggal Periksa:</th>
-                        <td id="tgl_periksa"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Diagnosa:</th>
-                        <td id="diagnosa"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Resep Obat:</th>
-                        <td>
-                            <ul id="obat"></ul>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- MODAL TAMBAH / UBAH laporan -->
+<!-- MODAL TAMBAH / UBAH LAPORAN -->
 <div class="modal fade" id="modal_laporan" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modal_laporan_label">Form laporan</h5>
+                <h5 class="modal-title" id="modal_laporan_label">Form Laporan</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

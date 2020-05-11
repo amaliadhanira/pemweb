@@ -47,9 +47,7 @@ $(document).ready(function(){
         $('#spesialis').text(data[0].nama_spesialisasi);
         $('#tgl_periksa').text(data[0].tgl_periksa);
         $('#diagnosa').text(data[0].diagnosa);
-        $.each(data, function(i, item){
-          $('#obat').append('<li>' + data[i].nama_obat + '</li>');
-        });
+        $('#obat').text(data[0].resep_obat);
         $('#modal_rincian_laporan').modal('show');
       },
       error: function (jqXHR, textStatus, errorThrown){

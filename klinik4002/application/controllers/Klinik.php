@@ -215,8 +215,7 @@ class Klinik extends CI_Controller{
 			$row[] = $lap['nama_spesialisasi'];
 			$row[] = $lap['tgl_periksa'];
 			$row[] = $lap['diagnosa'];
-
-			$row[] = '<button class="btn btn-sm btn-info" data-id_laporan="'. $lap['id_laporan'] .'" id="rincian_laporan">Rincian</button>';
+			$row[] = $lap['resep_obat'];
 
 			$data[] = $row;
 		}
@@ -229,11 +228,6 @@ class Klinik extends CI_Controller{
 		);
 
 		echo json_encode($output);
-	}
-
-	function this_resep_obat($id_laporan){
-		$resep_obat = $this->m_laporan_pemeriksaan->get_by_id_join_resep($id_laporan);
-		echo json_encode($resep_obat);
 	}
 
 	/* END OF CONTROLLER FUNCTIONS FOR DATATABLE LAPORAN PEMERIKSAAN */

@@ -15,4 +15,13 @@ class M_Spesialis extends CI_Model{
 		$this->get_detail_spesialisasi();
 		return $this->db->get()->result_array();
 	}
+
+	function tambah_spesialis($data_spesialis){
+		return $this->db->insert('spesialisasi', $data_spesialis);
+	}
+
+	function delete_spesialis($id_spesialisasi){
+		$this->db->where('id_spesialisasi', $id_spesialisasi);
+		$this->db->delete('spesialisasi');
+	}
 }

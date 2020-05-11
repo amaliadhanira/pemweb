@@ -68,10 +68,10 @@ CREATE TABLE `antrean` (
 --
 
 INSERT INTO `antrean` (`no_antrean`, `id_pasien`, `id_dokter`, `tgl_periksa`, `waktu_daftar`) VALUES
-(1, 2000001, 1000002, '2020-04-02', '2020-04-23 14:23:51'),
-(2, 2000002, 1000001, '2020-03-12', '2020-04-23 14:23:31'),
+(1, 2000001, 1000000, '2020-04-02', '2020-04-23 14:23:51'),
+(2, 2000003, 1000001, '2020-03-12', '2020-04-23 14:23:31'),
 (3, 2000004, 1000000, '2020-04-03', '2020-04-23 14:23:46'),
-(4, 2000003, 1000003, '2020-03-28', '2020-04-23 14:23:46'),
+(4, 2000002, 1000003, '2020-03-28', '2020-04-23 14:23:46'),
 (5, 2000001, 1000000, '2020-06-09', '2020-04-23 14:23:46');
 
 -- --------------------------------------------------------
@@ -103,7 +103,7 @@ CREATE TABLE `dokter` (
 -- Dumping data for table `dokter`
 --
 
-INSERT INTO `dokter` (`id_dokter`, `id_spesialisasi`, `nama_dokter`, `jadwal`, `no_telp`) VALUES
+INSERT INTO `dokter` (`id_dokter`, `id_spesialisasi`, `nama_dokter`, `jadwal`, `alamat`,`no_telp`) VALUES
 (1000000, 1, 'Alda Putri Utami', 'Senin-Jumat 08:00-12:00', 'Jl. Nan Indah No.12', '081299229939'),
 (1000001, 1, 'Raymond Agung Nugroho', 'Jumat-Sabtu 08:00-14:00', 'Jl. Nanana No. 70', '081344773851'),
 (1000002, 2, 'Dhanira Dessy Amalia', 'Senin-Jumat 08:00-12:00', 'Jl. Tol Banyak Hambatan No. 14', '0856227382910'),
@@ -164,48 +164,17 @@ INSERT INTO `lab` (`id_examiner`, `nama_examiner`, `alamat`, `no_telp`) VALUES
 CREATE TABLE `laporan_pemeriksaan` (
   `id_laporan` int(20) NOT NULL,
   `no_antrean` int(20) NOT NULL,
-  `diagnosa` text NOT NULL
+  `diagnosa` text NOT NULL,
+  `resep_obat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `laporan_pemeriksaan`
 --
 
-INSERT INTO `laporan_pemeriksaan` (`id_laporan`, `no_antrean`, `diagnosa`) VALUES
-(1, 1, 'Campak Jerman'),
-(2, 2, 'Disentri');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `obat`
---
-
-CREATE TABLE `obat` (
-  `id_obat` int(20) NOT NULL,
-  `nama_obat` varchar(30) NOT NULL,
-  `produsen` varchar(50) NOT NULL,
-  `manufacture_date` date NOT NULL,
-  `expired_date` date NOT NULL,
-  `jumlah` int(11) NOT NULL,
-  `harga` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `obat`
---
-
-INSERT INTO `obat` (`id_obat`, `nama_obat`, `produsen`, `manufacture_date`, `expired_date`, `jumlah`, `harga`) VALUES
-(101, 'Promag', 'Kalbe Farma', '2019-10-09', '2022-10-09', 152, 8000),
-(102, 'Amoxicillin', 'Dexa Medica', '2019-03-07', '2022-03-07', 138, 516),
-(103, 'Oralit', 'Phapros', '2019-12-14', '2022-12-14', 190, 1000),
-(104, 'Ibuprofen', 'Kimia Farma', '2019-11-11', '2022-11-11', 150, 20000),
-(105, 'Paracetamol', 'GSK', '2019-08-30', '2022-08-03', 117, 2400),
-(106, 'Betadine: Gargle', 'Mahakam Beta Farma', '2019-08-07', '2022-08-07', 180, 20000),
-(107, 'Chlorampenicol', 'Kalbe Farma', '2019-07-07', '0000-00-00', 113, 6200),
-(108, 'Panadol Menstrual', 'GSK', '2020-02-05', '2023-02-05', 90, 97000),
-(109, 'Tempra', 'Taisho Pharmaceutical Indonesia', '2020-01-18', '2023-01-18', 138, 54000),
-(110, 'Holisticare Ester C', 'Holisticare', '2020-01-09', '2023-01-09', 78, 60000);
+INSERT INTO `laporan_pemeriksaan` (`id_laporan`, `no_antrean`, `diagnosa`, `resep_obat`) VALUES
+(1, 1, 'Campak Jerman','Parasetamol 3x Sehari'),
+(2, 4, 'Disentri', 'Chloramphenicol 2x Sehari harus habis');
 
 -- --------------------------------------------------------
 
@@ -241,21 +210,6 @@ INSERT INTO `pasien` (`id_pasien`, `nama_pasien`, `tanggal_lahir`, `username`, `
 -- Table structure for table `resep_obat`
 --
 
-CREATE TABLE `resep_obat` (
-  `id_resep` int(20) NOT NULL,
-  `id_laporan` int(20) NOT NULL,
-  `id_obat` int(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
---
--- Dumping data for table `resep_obat`
---
-
-INSERT INTO `resep_obat` (`id_resep`, `id_laporan`, `id_obat`) VALUES
-(1, 1, 105),
-(2, 2, 102),
-(3, 1, 104);
 
 /*CREATE TABLE IF NOT EXISTS `tokens` (
   `id_token` int(11) NOT NULL AUTO_INCREMENT,
@@ -316,25 +270,11 @@ ALTER TABLE `laporan_pemeriksaan`
   ADD KEY `no_antrean_lap` (`no_antrean`);
 
 --
--- Indexes for table `obat`
---
-ALTER TABLE `obat`
-  ADD PRIMARY KEY (`id_obat`);
-
---
 -- Indexes for table `pasien`
 --
 ALTER TABLE `pasien`
   ADD PRIMARY KEY (`id_pasien`),
   ADD UNIQUE KEY `username` (`username`);
-
---
--- Indexes for table `resep_obat`
---
-ALTER TABLE `resep_obat`
-  ADD PRIMARY KEY (`id_resep`),
-  ADD KEY `id_laporan_resep` (`id_laporan`),
-  ADD KEY `id_obat_resep` (`id_obat`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -381,22 +321,10 @@ ALTER TABLE `laporan_pemeriksaan`
   MODIFY `id_laporan` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `obat`
---
-ALTER TABLE `obat`
-  MODIFY `id_obat` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
-
---
 -- AUTO_INCREMENT for table `pasien`
 --
 ALTER TABLE `pasien`
   MODIFY `id_pasien` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2000005;
-
---
--- AUTO_INCREMENT for table `resep_obat`
---
-ALTER TABLE `resep_obat`
-  MODIFY `id_resep` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
@@ -414,14 +342,6 @@ ALTER TABLE `antrean`
 --
 ALTER TABLE `laporan_pemeriksaan`
   ADD CONSTRAINT `no_antrean_lap` FOREIGN KEY (`no_antrean`) REFERENCES `antrean` (`no_antrean`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `resep_obat`
---
-ALTER TABLE `resep_obat`
-  ADD CONSTRAINT `id_laporan_resep` FOREIGN KEY (`id_laporan`) REFERENCES `laporan_pemeriksaan` (`id_laporan`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `id_obat_resep` FOREIGN KEY (`id_obat`) REFERENCES `obat` (`id_obat`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -41,6 +41,10 @@ $(document).ready(function(){
         $('[name="nama_admin"]').removeClass("disabled");
         $('[name="username"]').prop("disabled", false);
         $('[name="username"]').removeClass("disabled");
+        $('[name="password"]').prop("disabled", false);
+        $('[name="password"]').addClass("disabled");
+        $('[name="passconf"]').prop("disabled", false);
+        $('[name="passconf"]').addClass("disabled");
         $('#modal_admin').modal('show');
         $('#modal_admin_label').text('Tambah Admin');
     });
@@ -68,6 +72,10 @@ $(document).ready(function(){
         $('[name="nama_admin"]').addClass("disabled");
         $('[name="username"]').prop("disabled", true);
         $('[name="username"]').addClass("disabled");
+        $('[name="password"]').prop("disabled", true);
+        $('[name="password"]').addClass("disabled");
+        $('[name="passconf"]').prop("disabled", true);
+        $('[name="passconf"]').addClass("disabled");
         $('#modal_admin').modal('show');
         $('#modal_admin_label').text('Edit Admin');
       },

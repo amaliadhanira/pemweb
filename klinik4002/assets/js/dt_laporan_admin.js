@@ -22,7 +22,7 @@ $(document).ready(function(){
       },
 
       "columnDefs": [{
-          "targets": [0, 1, -1, -2],
+          "targets": [0, -1],
           "orderable": false,
       },],
     });
@@ -38,7 +38,7 @@ $(document).ready(function(){
     aksi = 'rincian';
 
     $.ajax({
-      url: "http://localhost/klinik4002/adminpage/this_resep_obat/" + id_laporan,
+      url: "http://localhost/klinik4002/adminpage/click_rincian/" + id_laporan,
       type: "GET",
       dataType: "JSON",
       success: function(data){
@@ -47,9 +47,7 @@ $(document).ready(function(){
         $('#spesialis').text(data[0].nama_spesialisasi);
         $('#tgl_periksa').text(data[0].tgl_periksa);
         $('#diagnosa').text(data[0].diagnosa);
-        $.each(data, function(i, item){
-          $('#obat').append('<li>' + data[i].nama_obat + '</li>');
-        });
+        $('#resep_obat').text(data[0].resep_obat);
         $('#modal_rincian_laporan').modal('show');
       },
       error: function (jqXHR, textStatus, errorThrown){
