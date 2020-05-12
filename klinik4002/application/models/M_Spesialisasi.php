@@ -1,24 +1,29 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_Laporan_Admin extends CI_Model{
-
-	var $column_order = array(null, 'laporan_pemeriksaan.no_antrean', 'nama_pasien', 'nama_dokter', 'nama_spesialisasi', 'tgl_periksa', 'diagnosa', 'resep_obat', null);
-	var $column_search = array('laporan_pemeriksaan.no_antrean', 'nama_pasien', 'nama_dokter', 'nama_spesialisasi', 'tgl_periksa');
-	var $order = array('laporan_pemeriksaan.no_antrean' => 'asc');
-	var $table = 'laporan_pemeriksaan';
+class M_Spesialisasi extends CI_Model{
+	var $column_order = array(null, 'nama_spesialisasi', null);
+	var $column_search = array('nama_spesialisasi');
+	var $order = array('nama_spesialisasi' => 'asc');
+	var $table = 'spesialisasi';
 
 	function __construct(){
 		parent::__construct();
 	}
 
-	function get_laporan(){
+	function get_spesialisasi(){
 		$this->db->select('*');
 		$this->db->from('spesialisasi');
-		$this->db->join('dokter', 'dokter.id_spesialisasi = spesialisasi.id_spesialisasi');
-		$this->db->join('antrean', 'dokter.id_dokter = antrean.id_dokter');
-		$this->db->join('pasien', 'pasien.id_pasien = antrean.id_pasien');
-		$this->db->join('laporan_pemeriksaan', 'laporan_pemeriksaan.no_antrean = antrean.no_antrean');
+	}
+
+	function get_all(){
+		$this->get_spesialisasi();
+		return $this->db->get()->result_array();
+	}
+
+	function get_by_id($id_spesialisasi){
+		$this->db->where('id_spesialisasi', $id_spesialisasi);
+		return $this->db->get($this->table)->row_array();
 	}
 
 	private function _get_datatables_query(){
@@ -26,7 +31,7 @@ class M_Laporan_Admin extends CI_Model{
 		$post_search = $this->input->post('search');
 		$post_order = $this->input->post('order');
 
-		$this->get_laporan();
+		$this->get_spesialisasi();
 
 		$i = 0;
 
@@ -68,31 +73,22 @@ class M_Laporan_Admin extends CI_Model{
 	}
 
 	function count_all(){
-		$this->get_laporan();
+		$this->get_spesialisasi();
 
 		return $this->db->count_all_results();
 	}
 
-	function buat_laporan($data_laporan){
-		return $this->db->insert($this->table, $data_laporan);
+	function add_spesialisasi($data){
+		return $this->db->insert($this->table, $data);
 	}
 
-	function edit_laporan($id_laporan, $data_laporan){
-		$this->db->where('id_laporan', $id_laporan);
-		return $this->db->update($this->table, $data_laporan);
+	function update_spesialisasi($id_spesialisasi, $data){
+		$this->db->where('id_spesialisasi', $id_spesialisasi);
+		return $this->db->update($this->table, $data);
 	}
 
-	function get_by_id($id_laporan){
-		$this->get_laporan();
-		$this->db->where('id_laporan', $id_laporan);
-
-		return $this->db->get()->row_array();
-	}
-
-	function delete_laporan($id_laporan){
-		$this->db->where('id_laporan', $id_laporan);
+	function del_spesialisasi($id_spesialisasi){
+		$this->db->where('id_spesialisasi', $id_spesialisasi);
 		$this->db->delete($this->table);
 	}
-
 }
-?>

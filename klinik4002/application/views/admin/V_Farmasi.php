@@ -2,7 +2,7 @@
 	<div class="col col-md-12 p-3">
 		<h1>Data Apoteker</h1>
 		<?= validation_errors('<div class="error alert alert-danger" role="alert">', '</div>') ?>
-		<div class="float-left"><button class="btn btn-sm btn-primary" id="tambah_farmasi">Tambah Apoteker</button></div>
+		<div class="float-left p-1"><button class="btn btn-sm btn-primary" id="tambah_farmasi">Tambah Apoteker</button></div>
 			<table class="table table-hover" id="table_farmasi" style="width: 100%">
 				<thead>
 					<tr>

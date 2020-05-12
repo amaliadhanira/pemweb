@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Lab extends CI_Model{
-	var $column_order = array(null, 'nama_examiner', 'alamat', 'no_telp');
+	var $column_order = array(null, 'nama_examiner', 'alamat', 'no_telp', null);
 	var $column_search = array('nama_examiner');
 	var $order = array('nama_examiner' => 'asc');
 	var $table = 'lab';

@@ -2,15 +2,18 @@
     <div class="col col-md-12 p-3">
         <h1>Data Laporan</h1>
         <?= validation_errors('<div class="error alert alert-danger" role="alert">', '</div>') ?>
-        <div class="float-left"><button class="btn btn-sm btn-primary" id="tambah_laporan">Buat laporan</button></div>
+        <div class="float-left p-1"><button class="btn btn-sm btn-primary" id="buat_laporan">Buat Laporan</button></div>
             <table class="table table-hover" id="table_laporan" style="width: 100%">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
+                        <th scope="col">No. Antrean</th>
                         <th scope="col">Nama Pasien</th>
                         <th scope="col">Nama Dokter</th>
                         <th scope="col">Spesialis</th>
                         <th scope="col">Tanggal Periksa</th>
+                        <th scope="col" style="width: 25%">Diagnosa</th>
+                        <th scope="col" style="width: 25%">Resep Obat</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
@@ -35,41 +38,37 @@
                     <input type="hidden" name="id_laporan" value="">
                     <div class="form-body">
                         <div class="form-group">
-                            <label for="no_antrean" class="col-form-label">Nomor Antrean:</label>
-                            <input type="text" name="no_antrean" class="form-control" placeholder="Nomor Antrean">
+                            <input type="hidden" name="no_antrean" id="no_antrean" value="0">
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
                             <label for="nama_pasien" class="col-form-label">Nama Pasien:</label>
-                            <input type="email" name="email" class="form-control" placeholder="Email">
+                            <input type="text" name="nama_pasien" class="form-control disabled" placeholder="Nama Pasien" disabled>
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
-                            <label for="dokter" class="col-form-label">Dokter:</label>
-                            <select name="dokter" id="dokter" class="form-control">
-                                <?php foreach ($dokter as $dok) { ?>
-                                    <option value="<?= $dok['id_dokter'] ?>"><?= $dok['nama_dokter']. ' - ' .$dok['nama_spesialisasi'] ?></option>
-                                <?php 
-                                $val_id_dok = $dok['id_dokter'];
-                            } ?>
-                            </select>
-                            <input type="hidden" name="id_dokter" value="">
+                            <label for="nama_dokter" class="col-form-label">Nama Dokter:</label>
+                            <input type="text" name="nama_dokter" class="form-control disabled" placeholder="Nama Dokter" disabled>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="nama_spesialisasi" class="col-form-label">Spesialis:</label>
+                            <input type="text" name="nama_spesialisasi" class="form-control disabled" placeholder="Spesialis" disabled>
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
                             <label for="tgl_periksa" class="col-form-label">Tanggal Periksa:</label>
-                            <input type="text" name="tgl_periksa" class="form-control" placeholder="Tanggal Periksa">
+                            <input type="text" name="tgl_periksa" class="form-control disabled" placeholder="Tanggal Periksa" disabled>
                             <span class="help-block"></span>
                         </div>
                         <div class="form-group">
                             <label for="diagnosa" class="col-form-label">Diagnosa:</label>
-                            <input type="text" name="diagnosa" class="form-control" placeholder="Diagnosa">
+                            <textarea name="diagnosa" class="form-control" placeholder="Diagnosa"></textarea>
                             <span class="help-block"></span>
                         </div>
-                       
                         <div class="form-group">
                             <label for="resep_obat" class="col-form-label">Resep Obat:</label>
-                            <textarea name="resep_obat" class="form-control" placeholder="Resep Obat">
+                            <textarea name="resep_obat" class="form-control" placeholder="Resep Obat"></textarea>
                             <span class="help-block"></span>
                         </div>
                     </div>

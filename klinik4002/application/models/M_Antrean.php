@@ -20,6 +20,15 @@ class M_Antrean extends CI_Model{
 		$this->db->join('pasien', 'pasien.id_pasien = antrean.id_pasien');
 	}
 
+	function get_all_not_in_laporan(){
+		// SELECT SEMUA ANTREAN YANG BELUM ADA LAPORAN PEMERIKSAANNYA
+		$query = 'SELECT 1 FROM laporan_pemeriksaan WHERE laporan_pemeriksaan.no_antrean = antrean.no_antrean';
+
+		$this->get_antrean();
+		$this->db->where('NOT EXISTS ('.$query.')', '', FALSE);
+		return $this->db->get()->result_array();
+	}
+
 	private function _get_datatables_query(){
 
 		$post_search = $this->input->post('search');
@@ -78,10 +87,6 @@ class M_Antrean extends CI_Model{
 
 		return $this->db->get()->row_array();
 	}
-
-	/*function add_antrean($data){
-		return $this->db->insert($this->table, $data);
-	}*/
 
 	function update_antrean($no_antrean, $data){
 		$this->db->where('no_antrean', $no_antrean);

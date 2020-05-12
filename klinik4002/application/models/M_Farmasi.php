@@ -91,8 +91,5 @@ class M_Farmasi extends CI_Model{
 		$this->db->delete($this->table);
 	}
 
-	function delete_all_apoteker(){
-		$this->db->delete($this->table);
-	}
 }
 ?>

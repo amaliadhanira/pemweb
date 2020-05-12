@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Dokter extends CI_Model{
 	
-	var $column_order = array(null, 'nama_dokter', 'nama_spesialisasi', 'no_telp');
+	var $column_order = array(null, 'nama_dokter', 'nama_spesialisasi', 'no_telp', null);
 	var $column_search = array('nama_dokter', 'nama_spesialisasi');
 	var $order = array('nama_dokter' => 'asc');
 	var $table = 'dokter';
@@ -91,22 +91,10 @@ class M_Dokter extends CI_Model{
 		return $this->db->update($this->table, $data_dokter);
 	}
 
-	function get_last_id(){
-		return $this->db->insert_id();
-	}
-
 	function delete_dokter_by_id($id_dokter){
 		$this->db->where('id_dokter', $id_dokter);
 		$this->db->delete($this->table);
 	}
 
-	function delete_all_dokter(){
-		$this->db->delete('dokter');
-	}
-
-	function all_rows_count(){
-		$query = $this->db->get('dokter');
-		return $query->num_rows();
-	}
 }
 ?>

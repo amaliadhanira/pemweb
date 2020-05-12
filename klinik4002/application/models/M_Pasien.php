@@ -83,65 +83,9 @@ class M_Pasien extends CI_Model{
 		return $this->db->get('pasien')->row_array();
 	}
 
-	function new_pasien($data_pasien){
-		$data = array(
-			'nama_pasien' => $data_pasien['nama_pasien'],
-			'ttl' => $data_pasien['ttl'],
-			'username' => $data_pasien['username'],
-			'alamat' => $data_pasien['alamat'],
-			'no_telp' => $data_pasien['no_telp'],
-			'email' => $data_pasien['email'],
-			'password' => md5($data_pasien['password'])
-		);
-		
-		$this->db->insert('pasien', $data);
-	}
-
-	function edit_pasien($id_pasien, $data_pasien){
-		$data = array(
-			'nama_pasien' => $data_pasien['nama_pasien'],
-			'ttl' => $data_pasien['ttl'],
-			'username' => $data_pasien['username'],
-			'alamat' => $data_pasien['alamat'],
-			'no_telp' => $data_pasien['no_telp'],
-			'email' => $data_pasien['email'],
-			'password' => md5($data_pasien['password'])
-		);
-
-		$this->db->where('id_pasien', $id_pasien);
-		$this->db->update('pasien', $data);
-	}
-
-	function exist_username($username){
-		$query = $this->db->where('pasien', array('username' => $username), 1);
-		if($query->num_rows() > 0){
-			return TRUE;
-		}else{
-			return FALSE;
-		}
-	}
-
-	function exist_email($email){
-		$query = $this->db->where('pasien', array('email' => $email), 1);
-		if($query->num_rows() > 0){
-			return TRUE;
-		}else{
-			return FALSE;
-		}
-	}
-
 	function delete_pasien_by_id($id_pasien){
 		$this->db->where('id_pasien', $id_pasien);
 		$this->db->delete($this->table);
-	}
-
-	function delete_all_pasien(){
-		$this->db->delete('pasien');
-	}
-
-	function all_rows_count(){
-		$query = $this->db->get('pasien');
-		return $query->num_rows();
 	}
 	
 	function match_password($id_pasien, $password){

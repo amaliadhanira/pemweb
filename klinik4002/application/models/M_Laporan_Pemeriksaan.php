@@ -80,22 +80,5 @@ class M_Laporan_Pemeriksaan extends CI_Model{
 
 		return $this->db->get()->row_array();
 	}
-
-/*
-	function add_antrean($data){
-		return $this->db->insert($this->table, $data);
-		//return $this->db->insert_id();
-	}
-
-	function update_antrean($no_antrean, $data){
-		$this->db->where('no_antrean', $no_antrean);
-		return $this->db->update($this->table, $data);
-		//return $this->db->affected_rows();
-	}
-
-	function del_antrean($no_antrean){
-		$this->db->where('no_antrean', $no_antrean);
-		$this->db->delete($this->table);
-	}*/
 }
 ?>

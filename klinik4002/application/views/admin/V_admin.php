@@ -61,7 +61,7 @@
 							<span class="help-block"></span>
 						</div>
 						<div class="form-group">
-							<label for="password" class="col-form-label">Sandi:</label>
+							<label for="password" class="col-form-label" id="label_sandi">Sandi:</label>
 							<input type="password" name="password" class="form-control" placeholder="Sandi">
 							<span class="help-block"></span>
 						</div>
@@ -70,6 +70,7 @@
 							<input type="password" name="passconf" class="form-control" placeholder="Konfirmasi Sandi">
 							<span class="help-block"></span>
 						</div>
+						
 					</div>
 				</form>
 			</div>

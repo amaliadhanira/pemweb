@@ -3,7 +3,7 @@
         <h1>Data Dokter</h1>
         <?= validation_errors('<div class="error alert alert-danger" role="alert">', '</div>') ?>
         <div class="float-left p-1"><button class="btn btn-sm btn-primary" id="tambah_dokter">Tambah Dokter</button></div>
-        <div class="float-left p-1"><button class="btn btn-sm btn-primary" id="kelola_spesialisasi">Kelola Spesialisasi</button></div>
+        <div class="float-left p-1"><a href="<?= site_url('adminpage/spesialisasi') ?>" class="btn btn-sm btn-primary" id="kelola_spesialisasi">Kelola Spesialisasi</a></div>
             <table class="table table-hover" id="table_dokter" style="width: 100%">
                 <thead>
                     <tr>

@@ -26,4 +26,5 @@
 	<script src="<?= base_url('assets/js/dt_lab.js') ?>"></script>
 	<script src="<?= base_url('assets/js/dt_farmasi.js') ?>"></script>
 	<script src="<?= base_url('assets/js/dt_laporan_admin.js') ?>"></script>
+	<script src="<?= base_url('assets/js/dt_spesialisasi.js') ?>"></script>
 </body>
