@@ -11,7 +11,7 @@ class Adminpage extends CI_Controller{
 
 		$this->load->model('m_admin');
 		$this->load->model('m_dokter');
-		$this->load->model('m_spesialis');
+		$this->load->model('m_spesialisasi');
 		$this->load->model('m_pasien');
 		$this->load->model('m_antrean');
 		$this->load->model('m_farmasi');
@@ -41,8 +41,10 @@ class Adminpage extends CI_Controller{
 		$admin = $this->m_admin->get_datatables();
 		$data = array();
 		$no = $this->input->post('start');
+		$this_username = $this->session->username;
 
 		foreach($admin as $adm) {
+			$dis = '';
 			$no++;
 			$row = array();
 			$row[] = $no;
@@ -51,7 +53,12 @@ class Adminpage extends CI_Controller{
 			$row[] = $adm['alamat'];
 			$row[] = $adm['username'];
 			$row[] = $adm['no_telp'];
-			$row[] = '<button class="btn btn-sm btn-warning" data-id_admin="'. $adm['id_admin'] .'" id="ubah_admin">Edit</button> <button class="btn btn-sm btn-danger" data-id_admin="'. $adm['id_admin'] .'" id="hapus_admin">Hapus</button>';
+
+			if(($this_username != 'superadmin') OR ($adm['username'] == 'superadmin')){
+				$dis = ' disabled';
+			}
+
+			$row[] = '<button class="btn btn-sm btn-warning" data-id_admin="'. $adm['id_admin'] .'" id="ubah_admin">Edit</button> <button class="btn btn-sm btn-danger'. $dis .'"'. $dis .' data-id_admin="'. $adm['id_admin'] .'" id="hapus_admin">Hapus</button>';
 
 			$data[] = $row;
 		}
@@ -72,13 +79,10 @@ class Adminpage extends CI_Controller{
 	}
 
 	function tambah_admin(){
-		//$data_post = $this->input->post();
-		//$data_post['password'] = random_string('alnum', 8);
-
 		//FORM VALIDATION
 		$this->form_validation->set_rules('nama_admin', 'Nama Lengkap', 'trim|required|alpha_numeric_spaces');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[pasien.email]');
-		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[12]|alpha_dash|is_unique[pasien.username]');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[admin.email]');
+		$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[12]|alpha_dash|is_unique[admin.username]');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
 		$this->form_validation->set_rules('no_telp', 'Nomor Telepon', 'trim|required|numeric|min_length[10]|max_length[13]');
 		$this->form_validation->set_rules('password', 'Sandi', 'trim|required|min_length[8]');
@@ -103,22 +107,29 @@ class Adminpage extends CI_Controller{
 
 	function ubah_admin(){
 		$id_admin = $this->input->post('id_admin');
-		//$password = $this->input->post('password');
+		$password = $this->input->post('password');
 
 		//FORM VALIDATION
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[pasien.email]');
 		$this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
 		$this->form_validation->set_rules('no_telp', 'Nomor Telepon', 'trim|required|numeric|min_length[10]|max_length[13]');
+		$this->form_validation->set_rules('password', 'Sandi', 'trim|required|min_length[8]');
+		$this->form_validation->set_rules('passconf', 'Konfirmasi Sandi', 'trim|required|matches[password]');
 		
 		$data = array(
-			'email' => $this->input->post('email'),
 			'alamat' => $this->input->post('alamat'),
 			'no_telp' => $this->input->post('no_telp'),
 		);
 
-	
-			$update = $this->m_admin->update_admin($id_admin, $data);
-			if ($update) echo json_encode(array("success" => TRUE));
+		if ($this->form_validation->run() == FALSE){
+			$this->admin();
+		} else {
+			if ($this->m_admin->match_password($id_admin, $password)){
+				$update = $this->m_admin->update_admin($id_admin, $data);
+				if ($update) echo json_encode(array("success" => TRUE));
+			} else {
+				$this->admin();
+			}
+		}
 				
 	}
 
@@ -205,7 +216,7 @@ class Adminpage extends CI_Controller{
 	function dokter(){
 		$data['title'] = 'Dokter';
 		$data['page'] = 'dokter';
-		$data['spesialisasi'] = $this->m_spesialis->get_all();
+		$data['spesialisasi'] = $this->m_spesialisasi->get_all();
 		$this->load->view('admin/templates/v_header', $data);
 		$this->load->view('admin/v_dokter', $data);
 		$this->load->view('admin/templates/v_footer', $data);
@@ -268,18 +279,6 @@ class Adminpage extends CI_Controller{
 			if ($insert) echo json_encode(array("success" => TRUE));
 		}
 	
-	}
-
-	function tambah_spesialis(){
-		$data_spesialis = array(
-			'nama_spesialisasi' => $this->input->post('nama_spesialisasi')
-		);
-
-		$insert = $this->m_spesialis->m_spesialis($data_spesialis);
-		if($insert){
-			echo json_encode(array("success" => TRUE));
-		}
-
 	}
 
 	function ubah_dokter(){
@@ -406,9 +405,11 @@ class Adminpage extends CI_Controller{
 			'no_telp' => $this->input->post('no_telp')
 		);
 
-		$insert = $this->m_lab->add_lab($data);
-		if ($insert) {
-			echo json_encode(array("success" => TRUE));
+		if ($this->form_validation->run() == FALSE){
+			$this->lab();
+		} else {
+			$insert = $this->m_lab->add_lab($data);
+			if ($insert) echo json_encode(array("success" => TRUE));
 		}
 	}
 
@@ -532,6 +533,7 @@ class Adminpage extends CI_Controller{
 	function laporan(){
 		$data['title'] = 'Laporan Pemeriksaan Pasien';
 		$data['page'] = 'laporan_pasien';
+		$data['antrean'] = $this->m_antrean->get_all_not_in_laporan();
 		$this->load->view('admin/templates/v_header', $data);
 		$this->load->view('admin/v_laporan', $data);
 		$this->load->view('admin/templates/v_footer', $data);
@@ -546,6 +548,7 @@ class Adminpage extends CI_Controller{
 			$no++;
 			$row = array();
 			$row[] = $no;
+			$row[] = $lap['no_antrean'];
 			$row[] = $lap['nama_pasien'];
 			$row[] = $lap['nama_dokter'];
 			$row[] = $lap['nama_spesialisasi'];
@@ -553,7 +556,7 @@ class Adminpage extends CI_Controller{
 			$row[] = $lap['diagnosa'];
 			$row[] = $lap['resep_obat'];
 
-			$row[] = '<button class="btn btn-sm btn-warning" data-id_laporan"'.$lap['id_laporan'].'"id="edit_laporan">Edit</button> <button class="btn btn-sm btn-danger" data-id_laporan"'.$lap['id_laporan'].'"id="hapus_laporan">Hapus</button>';
+			$row[] = '<button class="btn btn-sm btn-warning" data-id_laporan="'.$lap['id_laporan'].'" id="ubah_laporan">Edit</button> <button class="btn btn-sm btn-danger" data-id_laporan="'.$lap['id_laporan'].'"id="hapus_laporan">Hapus</button>';
 
 			$data[] = $row;
 		}
@@ -568,9 +571,14 @@ class Adminpage extends CI_Controller{
 		echo json_encode($output);
 	}
 
-	function click_rincian($id_laporan){
-		$resep_obat = $this->m_laporan_admin->rincian($id_laporan);
-		echo json_encode($resep_obat);
+	function antrean_options(){
+		$antrean = $this->m_antrean->get_all_not_in_laporan();
+		echo json_encode($antrean);
+	}
+
+	function this_antrean($no_antrean){
+		$antrean = $this->m_antrean->get_by_no($no_antrean);
+		echo json_encode($antrean);
 	}
 
 	function edit_laporan($id_laporan){
@@ -581,27 +589,20 @@ class Adminpage extends CI_Controller{
 	function buat_laporan(){
 		// FORM VALIDATION
 		$this->form_validation->set_rules('no_antrean', 'Nomor Antrean', 'trim|required|numeric');
-		$this->form_validation->set_rules('nama_pasien', 'Nama Pasien', 'trim|required|alpha_numeric_spaces');
-		$this->form_validation->set_rules('nama_dokter', 'Nama Dokter', 'trim|required|alpha_numeric_spaces');
-		$this->form_validation->set_rules('nama_spesialisasi', 'Spesialis', 'trim|required');
-		$this->form_validation->set_rules('tgl_periksa', 'Tanggal Periksa', 'trim|required');
 		$this->form_validation->set_rules('diagnosa', 'Diagnosa', 'trim|required');
 		$this->form_validation->set_rules('resep_obat', 'Resep Obat', 'trim|required');
 
-		$data = array(
-			'id_laporan' => $this->input->post('id_laporan'),
+		$data_laporan = array(
 			'no_antrean' => $this->input->post('no_antrean'),
-			'nama_pasien' => $this->input->post('nama_pasien'),
-			'nama_dokter' => $this->input->post('nama_dokter'),
-			'nama_spesialisasi' => $this->input->post('nama_spesialisasi'),
-			'tgl_periksa' => $this->input->post('tgl_periksa'),
 			'diagnosa' => $this->input->post('diagnosa'),
-			'resep_obat' => $this->input('resep_obat')
+			'resep_obat' => $this->input->post('resep_obat')
 		);
 
-		$insert = $this->m_laporan_admin->buat_laporan($data_laporan);
-		if ($insert) {
-			echo json_encode(array("success" => TRUE));
+		if ($this->form_validation->run() == FALSE){
+			$this->laporan();
+		} else {
+			$insert = $this->m_laporan_admin->buat_laporan($data_laporan);
+			if ($insert) echo json_encode(array("success" => TRUE));
 		}
 	}
 
@@ -609,33 +610,101 @@ class Adminpage extends CI_Controller{
 		$id_laporan = $this->input->post('id_laporan');
 
 		// FORM VALIDATION
-		$this->form_validation->set_rules('no_antrean', 'Nomor Antrean', 'trim|required|numeric');
-		$this->form_validation->set_rules('nama_pasien', 'Nama Pasien', 'trim|required|alpha_numeric_spaces');
-		$this->form_validation->set_rules('nama_dokter', 'Nama Dokter', 'trim|required|alpha_numeric_spaces');
-		$this->form_validation->set_rules('nama_spesialisasi', 'Spesialis', 'trim|required');
-		$this->form_validation->set_rules('tgl_periksa', 'Tanggal Periksa', 'trim|required');
 		$this->form_validation->set_rules('diagnosa', 'Diagnosa', 'trim|required');
 		$this->form_validation->set_rules('resep_obat', 'Resep Obat', 'trim|required');
 
-		$data = array(
-			'id_laporan' => $this->input->post('id_laporan'),
-			'no_antrean' => $this->input->post('no_antrean'),
-			'nama_pasien' => $this->input->post('nama_pasien'),
-			'nama_dokter' => $this->input->post('nama_dokter'),
-			'nama_spesialisasi' => $this->input->post('nama_spesialisasi'),
-			'tgl_periksa' => $this->input->post('tgl_periksa'),
+		$data_laporan = array(
 			'diagnosa' => $this->input->post('diagnosa'),
 			'resep_obat' => $this->input->post('resep_obat')
 		);
 
-		$update = $this->m_laporan_admin->edit_laporan($id_laporan, $data_laporan);
-		if($update){
-			echo json_encode(array("success" => TRUE));
+		if ($this->form_validation->run() == FALSE){
+			$this->laporan();
+		} else {
+			$update = $this->m_laporan_admin->edit_laporan($id_laporan, $data_laporan);
+			if ($update) echo json_encode(array("success" => TRUE));
 		}
 	}
 
-	function hapus_laporan(){
+	function hapus_laporan($id_laporan){
 		$this->m_laporan_admin->delete_laporan($id_laporan);
+		echo json_encode(array("success" => TRUE));
+	}
+
+	function spesialisasi(){
+		$data['title'] = 'Kelola Spesialisasi';
+		$data['page'] = 'spesialisasi';
+		$this->load->view('admin/templates/v_header', $data);
+		$this->load->view('admin/v_spesialisasi', $data);
+		$this->load->view('admin/templates/v_footer', $data);
+	}
+
+	// CONTROLLER FUNCTION FOR DATATABLE SPESIALISASI
+	function data_spesialisasi(){
+		$spesialisasi = $this->m_spesialisasi->get_datatables();
+		$data = array();
+		$no = $this->input->post('start');
+
+		foreach($spesialisasi as $spe) {
+			$no++;
+			$row = array();
+			$row[] = $no;
+			$row[] = $spe['nama_spesialisasi'];
+			$row[] = '<button class="btn btn-sm btn-warning" data-id_spesialisasi="'. $spe['id_spesialisasi'] .'" id="ubah_spesialisasi">Edit</button> <button class="btn btn-sm btn-danger" data-id_spesialisasi="'. $spe['id_spesialisasi'] .'" id="hapus_spesialisasi">Hapus</button>';
+			$data[] = $row;
+		}
+
+		$output = array(
+						"draw" => $this->input->post('draw'),
+						"recordsTotal" => $this->m_lab->count_all(),
+						"recordsFiltered" => $this->m_lab->count_filtered(),
+						"data" => $data,
+		);
+
+		echo json_encode($output);
+	}
+
+	function edit_spesialisasi($id_spesialisasi){
+		$data = $this->m_spesialisasi->get_by_id($id_spesialisasi);
+		echo json_encode($data);
+	}
+
+	function tambah_spesialisasi(){
+		// FORM VALIDATION
+		$this->form_validation->set_rules('nama_spesialisasi', 'Nama Spesialisasi', 'trim|required|alpha_numeric_spaces');
+
+		$data = array(
+			'nama_spesialisasi' => $this->input->post('nama_spesialisasi'),
+		);
+
+		if ($this->form_validation->run() == FALSE){
+			$this->spesialisasi();
+		} else {
+			$insert = $this->m_spesialisasi->add_spesialisasi($data);
+			if ($insert) echo json_encode(array("success" => TRUE));
+		}
+	}
+
+	function ubah_spesialisasi(){
+		$id_spesialisasi = $this->input->post('id_spesialisasi');
+
+		// FORM VALIDATION
+		$this->form_validation->set_rules('nama_spesialisasi', 'Nama Spesialisasi', 'trim|required|alpha_numeric_spaces');
+
+		$data = array(
+			'nama_spesialisasi' => $this->input->post('nama_spesialisasi'),
+		);
+
+		if ($this->form_validation->run() == FALSE){
+			$this->spesialisasi();
+		} else {
+			$update = $this->m_spesialisasi->update_spesialisasi($id_spesialisasi, $data);
+			if ($update) echo json_encode(array("success" => TRUE));
+		}
+	}
+
+	function hapus_spesialisasi($id_spesialisasi){
+		$this->m_spesialisasi->del_spesialisasi($id_spesialisasi);
 		echo json_encode(array("success" => TRUE));
 	}
 }
