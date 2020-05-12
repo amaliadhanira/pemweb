@@ -99,8 +99,8 @@ $(document).ready(function(){
 
   //SET ID DOKTER WHEN DOKTER OPTION SELECTED
   $('#dokter').on('change', function(){
-    $id_dokter = $("#dokter option:selected").val();
-    $('[name="id_dokter"]').val($id_dokter);
+    id_dokter = $("#dokter option:selected").val();
+    $('[name="id_dokter"]').val(id_dokter);
   }).trigger("change");
 
   //ON CLICK BUTTON SIMPAN (MODAL)
@@ -127,8 +127,8 @@ $(document).ready(function(){
 
         if (data.success){
           $('#modal_antrean').modal('hide');
-          $id_dokter = $("#dokter option:eq(0)").val();
-          $('[name="id_dokter"]').val($id_dokter);
+          id_dokter = $("#dokter option:eq(0)").val();
+          $('[name="id_dokter"]').val(id_dokter);
           reload_table();
         }
 

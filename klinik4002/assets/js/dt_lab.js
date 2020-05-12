@@ -1,12 +1,12 @@
 $(document).ready(function(){
 
-  /* JQUERY/AJAX DATATABLES ADMIN */
+  /* JQUERY/AJAX DATATABLES LAB */
 
   var table;
   var aksi;
   var id_lab;
   
-  //DATATABLES ADMIN
+  //DATATABLES LAB
   table = $('#table_lab').DataTable({
       "processing": true,
       "serverSide": true,
@@ -22,7 +22,7 @@ $(document).ready(function(){
       },
 
       "columnDefs": [{
-          "targets": [0, -1],
+          "targets": [0, -1, -2, -3],
           "orderable": false,
       },],
     });
@@ -41,7 +41,7 @@ $(document).ready(function(){
     $('#modal_lab_label').text('Tambah Apoteker');
   });
 
-  //ON CLICK BUTTON UBAH ADMIN
+  //ON CLICK BUTTON UBAH LAB
   $('tbody').on('click', '#ubah_lab', function(){
     id_examiner = $(this).data("id_examiner");
     aksi = 'edit';

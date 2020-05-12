@@ -1,64 +1,109 @@
 $(document).ready(function(){
 
-  /* JQUERY/AJAX DATATABLES ADMIN */
+  /* JQUERY/AJAX DATATABLES LAPORAN */
 
   var table;
   var aksi;
   var id_laporan;
   
-  //DATATABLES ADMIN
+  //DATATABLES LAPORAN
   table = $('#table_laporan').DataTable({
-      "processing": true,
-      "serverSide": true,
-      "order": [],
-      "language": {
-        "emptyTable": "Tabel kosong"
-      },
+    "processing": true,
+    "serverSide": true,
+    "order": [],
+    "scrollX": true,
+    "language": {
+      "emptyTable": "Anda belum memiliki antrean"
+    },
 
-      "ajax": {
-          "url": "http://localhost/klinik4002/adminpage/data_laporan",
-          "type": "POST",
-          "dataType": "JSON"
-      },
+    "ajax": {
+      "url": "http://localhost/klinik4002/adminpage/data_laporan",
+      "type": "POST",
+      "dataType": "JSON"
+    },
 
-      "columnDefs": [{
-          "targets": [0, -1],
-          "orderable": false,
-      },],
-    });
+    "columnDefs": [{
+      "targets": [0, -1, -2, -3],
+      "orderable": false,
+    },],
+  });
 
   function reload_table(){
     table.ajax.reload(null, false);
   }
 
 //ON CLICK BUTTON BUAT LAPORAN
- $('#buat_laporan').on('click', function(){
-      aksi = 'add';
-        $('#form_laporan')[0].reset();
-        $('.form-group').removeClass('has-error');
-        $('.help-block').empty();
-        $('[name="no_antrean"]').prop("disabled", false);
-        $('[name="no_antrean"]').removeClass("disabled");
-        $('[name="nama_pasien"]').prop("disabled", false);
-        $('[name="nama_pasien"]').removeClass("disabled");
-        $('[name="nama_dokter"]').prop("disabled", false);
-        $('[name="nama_dokter"]').removeClass("disabled");
-        $('[name="nama_spesialisasi"]').prop("disabled", false);
-        $('[name="nama_spesialisasi"]').removeClass("disabled");
-        $('[name="tgl_periksa"]').prop("disabled", false);
-        $('[name="tgl_periksa"]').removeClass("disabled");
-        $('[name="diagnosa"]').prop("disabled", false);
-        $('[name="diagnosa"]').removeClass("disabled");
-        $('[name="resep_obat"]').prop("disabled", false);
-        $('[name="resep_obat"]').removeClass("disabled");
-        $('#modal_admin').modal('show');
-        $('#modal_admin_label').text('Tambah Admin');
+  $('#buat_laporan').on('click', function(){
+    aksi = 'add';
+    
+    $('#label_antrean').remove();
+    $('#antrean').remove();
+    $('#antrean_select').remove();
+    var antrean_select = '<label for="antrean_select" class="col-form-label" id="label_antrean">No. Antrean:</label> <select name="antrean_select" id="antrean_select" class="form-control"> </select>';
+    $(antrean_select).insertAfter('#no_antrean');
+
+    $('#form_laporan')[0].reset();
+    $('.form-group').removeClass('has-error');
+    $('.help-block').empty();
+
+    $.ajax({
+      url: "http://localhost/klinik4002/adminpage/antrean_options",
+      type: "GET",
+      dataType: "JSON",
+      success: function(data){
+        console.log(data);
+        $('#antrean_select').append($("<option></option>").attr("value", -1).text("---Silakan Pilih Nomor Antrean---"));
+        $.each(data, function(index, value){
+          $('#antrean_select').append($("<option></option>").attr("value", value.no_antrean).text(value.no_antrean));
+        })
+        $("#antrean_select option:eq(0)").prop('selected', true);
+      },
+      error: function (jqXHR, textStatus, errorThrown){
+        alert('Terjadi error dalam pengambilan data');
+      }
     });
 
- //ON CLICK BUTTON UBAH ADMIN
+    $('#modal_laporan').modal('show');
+    $('#modal_laporan_label').text('Buat Laporan');
+  });
+
+ //SET VALUES WHEN NO ANTREAN OPTION SELECTED
+  $('.form-group').on('change', '#antrean_select', function(){
+    var no_antrean = $("#antrean_select option:selected").val();
+    
+    $.ajax({
+      url: "http://localhost/klinik4002/adminpage/this_antrean/" + no_antrean,
+      type: "GET",
+      dataType: "JSON",
+      success: function(data){
+        console.log(data)
+        if(no_antrean != -1){
+          $('[name="no_antrean"]').val(data.no_antrean);
+          $('[name="nama_pasien"]').val(data.nama_pasien);
+          $('[name="nama_dokter"]').val(data.nama_dokter);
+          $('[name="nama_spesialisasi"]').val(data.nama_spesialisasi);
+          $('[name="tgl_periksa"]').val(data.tgl_periksa);
+        } else {
+          $('#form_laporan')[0].reset();
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown){
+        alert('Terjadi error dalam pengambilan data');
+      }
+    });
+  }).trigger("change");
+
+ //ON CLICK BUTTON UBAH LAPORAN
   $('tbody').on('click', '#ubah_laporan', function(){
     id_laporan = $(this).data("id_laporan");
     aksi = 'edit';
+
+    $('#label_antrean').remove();
+    $('#antrean').remove();
+    $('#antrean_select').remove();
+    var antrean = '<label for="antrean" class="col-form-label" id="label_antrean">No. Antrean:</label> <input type="text" name="antrean" id="antrean" class="form-control disabled" placeholder="No. Antrean" disabled>';
+    $(antrean).insertAfter('#no_antrean');
+
     $('#form_laporan')[0].reset();
     $('.form-group').removeClass('has-error');
     $('.help-block').empty();
@@ -69,6 +114,7 @@ $(document).ready(function(){
       dataType: "JSON",
       success: function(data){
         $('[name="id_laporan"]').val(data.id_laporan);
+        $('[name="antrean"]').val(data.no_antrean);
         $('[name="no_antrean"]').val(data.no_antrean);
         $('[name="nama_pasien"]').val(data.nama_pasien);
         $('[name="nama_dokter"]').val(data.nama_dokter);
@@ -76,14 +122,6 @@ $(document).ready(function(){
         $('[name="tgl_periksa"]').val(data.tgl_periksa);
         $('[name="diagnosa"]').val(data.diagnosa);
         $('[name="resep_obat"]').val(data.resep_obat);
-        $('[name="no_antrean"]').prop("disabled", true);
-        $('[name="no_antrean"]').addClass("disabled");
-        $('[name="nama_pasien"]').prop("disabled", true);
-        $('[name="nama_pasien"]').addClass("disabled");
-        $('[name="nama_dokter"]').prop("disabled", true);
-        $('[name="nama_dokter"]').addClass("disabled");
-        $('[name="nama_spesialisasi"]').prop("disabled", true);
-        $('[name="nama_spesialisasi"]').addClass("disabled");
         $('#modal_laporan').modal('show');
         $('#modal_laporan_label').text('Edit Laporan');
       },
@@ -104,7 +142,7 @@ $(document).ready(function(){
     if (aksi == 'add') {
       url = "http://localhost/klinik4002/adminpage/buat_laporan";
     } else {
-      url = "http://localhost/klinik4002/adminpage/edit_laporan";
+      url = "http://localhost/klinik4002/adminpage/ubah_laporan";
     }
 
     $.ajax({
